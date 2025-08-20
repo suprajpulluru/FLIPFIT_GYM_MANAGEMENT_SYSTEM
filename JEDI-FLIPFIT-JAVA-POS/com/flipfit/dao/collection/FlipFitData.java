@@ -67,5 +67,12 @@ public class FlipFitData {
         slotMap.put("SLOT002", new FlipFitSlots("SLOT002", "GYM001", "09:00", "10:00", "Trainer A", 10, 2));
         slotMap.put("SLOT003", new FlipFitSlots("SLOT003", "GYM002", "18:00", "19:00", "Trainer B", 15, 15)); // This slot is full
         slotMap.put("SLOT004", new FlipFitSlots("SLOT004", "GYM003", "07:00", "08:00", "Trainer C", 8, 0)); // Gym not verified
+
+        // Hardcoded Bookings
+        bookingMap.put("B001", new FlipFitBooking("B001", "SLOT001", "GYM001", "confirmed", new Date(), "customer1@gmail.com"));
+        bookingMap.put("B002", new FlipFitBooking("B002", "SLOT002", "GYM002", "confirmed", new Date(), "cust1@example.com"));
+        bookingMap.put("B003", new FlipFitBooking("B003", "SLOT003", "GYM003", "waiting", new Date(), "cust2@example.com"));
+        bookingMap.put("B004", new FlipFitBooking("B004", "SLOT004", "GYM004", "confirmed", new Date(), "cust3@example.com"));
+
     }
 }
