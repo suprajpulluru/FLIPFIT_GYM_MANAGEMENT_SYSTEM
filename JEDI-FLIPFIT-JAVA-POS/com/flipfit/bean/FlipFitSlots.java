@@ -1,4 +1,4 @@
 package com.flipfit.bean;
 
-public class GymOwner {
+public class FlipFitSlots {
 }

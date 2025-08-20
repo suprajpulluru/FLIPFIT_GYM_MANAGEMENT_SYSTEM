@@ -1,4 +1,4 @@
 package com.flipfit.business;
 
-public class AdminBuisness {
+public class AdminService {
 }
