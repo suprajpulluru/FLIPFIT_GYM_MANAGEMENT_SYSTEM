@@ -1,6 +1,6 @@
 package com.flipfit.bean;
 
-public class FlipFitCutomer {
+public class FlipFitCustomer {
     private String name;
     private String phoneNumber;
     private int age;
