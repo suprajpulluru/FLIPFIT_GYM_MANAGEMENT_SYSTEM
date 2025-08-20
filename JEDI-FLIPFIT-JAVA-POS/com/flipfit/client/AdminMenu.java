@@ -100,12 +100,12 @@ public class AdminMenu {
         System.out.print("Enter PAN Number: ");
         String pan = scanner.next();
 
-        FlipFitGymOwner newOwner = new FlipFitGymOwner(email, password, "GymOwner", name, phoneNumber, aadhar, pan);
-        if (userDAO.registerGymOwner(newOwner)) {
-            System.out.println("New Gym Owner registered successfully. Awaiting admin approval.");
-        } else {
-            System.out.println("Registration failed. Email might already be in use.");
-        }
+//        FlipFitGymOwner newOwner = new FlipFitGymOwner(email, password, "GymOwner", name, phoneNumber, aadhar, pan);
+//        if (userDAO.registerGymOwner(newOwner)) {
+//            System.out.println("New Gym Owner registered successfully. Awaiting admin approval.");
+//        } else {
+//            System.out.println("Registration failed. Email might already be in use.");
+//        }
     }
 
     public void showAdminMenu() {

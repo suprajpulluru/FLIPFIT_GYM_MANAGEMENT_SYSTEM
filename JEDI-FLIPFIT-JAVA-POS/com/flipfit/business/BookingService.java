@@ -31,12 +31,12 @@ public class BookingService {
             return;
         }
         // Check if the slot is already full
-        if (customerDAO.isFull(slotId, today.toString())) {
+        if (customerDAO.isFull(slotId)) {
             System.out.println("Booking Failed: This slot is already full.");
             return;
         }
         // Check if the customer has already booked this slot
-        if (customerDAO.alreadyBooked(slotId, customerEmail, today.toString())) {
+        if (customerDAO.alreadyBooked(slotId, customerEmail)) {
             System.out.println("Booking Failed: You have already booked this slot.");
             return;
         }

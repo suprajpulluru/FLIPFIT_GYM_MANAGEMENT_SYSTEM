@@ -1,4 +1,5 @@
 package com.flipfit.bean;
+import java.util.Date;
 
 public class FlipFitSlots {
     private String slotId;
@@ -8,6 +9,7 @@ public class FlipFitSlots {
     private String trainer;
     private int numOfSeats;
     private int numOfSeatsBooked;
+    private Date date;
 
     public FlipFitSlots() {
         super();
@@ -77,5 +79,8 @@ public class FlipFitSlots {
 
     public void setNumOfSeatsBooked(int numOfSeatsBooked) {
         this.numOfSeatsBooked = numOfSeatsBooked;
+    }
+    public Date getDate() {
+        return date;
     }
 }

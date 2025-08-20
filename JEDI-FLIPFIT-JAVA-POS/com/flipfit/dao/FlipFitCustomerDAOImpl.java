@@ -1,8 +1,13 @@
 package com.flipfit.dao;
 
-import com.flipfit.bean.*;
+import com.flipfit.bean.FlipFitBooking;
+import com.flipfit.bean.FlipFitCustomer;
+import com.flipfit.bean.FlipFitGym;
+import com.flipfit.bean.FlipFitPayment;
+import com.flipfit.bean.FlipFitSlots;
 import com.flipfit.dao.collection.FlipFitData;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,9 +16,7 @@ public class FlipFitCustomerDAOImpl implements FlipFitCustomerDAO {
 
     @Override
     public List<FlipFitGym> fetchGymList() {
-        return FlipFitData.gymMap.values().stream()
-                .filter(FlipFitGym::isVerified)
-                .collect(Collectors.toList());
+        return new ArrayList<>(FlipFitData.gymMap.values());
     }
 
     @Override
@@ -35,37 +38,33 @@ public class FlipFitCustomerDAOImpl implements FlipFitCustomerDAO {
         FlipFitBooking newBooking = new FlipFitBooking(bookingId, slotId, gymId, type, date, customerEmail);
         FlipFitData.bookingMap.put(bookingId, newBooking);
 
-        // Update the filled seats count for the slot
+        // Update the number of booked seats in the slot
         FlipFitSlots slot = FlipFitData.slotMap.get(slotId);
         if (slot != null) {
-            // CHANGED HERE: Using the correct method names from your FlipFitSlots class
             slot.setNumOfSeatsBooked(slot.getNumOfSeatsBooked() + 1);
         }
         return bookingId;
     }
 
     @Override
-    public boolean isFull(String slotId, String date) {
+    public boolean isFull(String slotId) {
         FlipFitSlots slot = FlipFitData.slotMap.get(slotId);
-        // CHANGED HERE: Using the correct method names
         return slot != null && slot.getNumOfSeatsBooked() >= slot.getNumOfSeats();
     }
 
     @Override
-    public boolean alreadyBooked(String slotId, String email, String date) {
+    public boolean alreadyBooked(String slotId, String email) {
         return FlipFitData.bookingMap.values().stream()
-                .anyMatch(booking -> booking.getCustomerEmail().equals(email) && booking.getSlotId().equals(slotId));
+                .anyMatch(booking -> booking.getSlotId().equals(slotId) && booking.getCustomerEmail().equals(email));
     }
 
     @Override
     public boolean cancelBookingById(String bookingId) {
-        if (FlipFitData.bookingMap.containsKey(bookingId)) {
-            FlipFitBooking booking = FlipFitData.bookingMap.remove(bookingId);
-
-            // Decrement the filled seats count in the corresponding slot
+        FlipFitBooking booking = FlipFitData.bookingMap.remove(bookingId);
+        if (booking != null) {
+            // Decrease the number of booked seats in the slot
             FlipFitSlots slot = FlipFitData.slotMap.get(booking.getSlotId());
             if (slot != null) {
-                // CHANGED HERE: Using the correct method names
                 slot.setNumOfSeatsBooked(slot.getNumOfSeatsBooked() - 1);
             }
             return true;
@@ -79,13 +78,31 @@ public class FlipFitCustomerDAOImpl implements FlipFitCustomerDAO {
         return slot != null && slot.getGymId().equals(gymId);
     }
 
-    // Unimplemented methods for this scenario
     @Override
-    public boolean checkGymApprove(String gymId) { return false; }
+    public boolean checkGymApprove(String gymId) {
+        FlipFitGym gym = FlipFitData.gymMap.get(gymId);
+        return gym != null && gym.isVerified();
+    }
+
     @Override
-    public void editProfile(FlipFitCustomer customer) {}
+    public void editProfile(FlipFitCustomer customer) {
+        // Update both the user and customer details in their respective maps
+        FlipFitData.userMap.put(customer.getEmail(), customer);
+        FlipFitData.customerMap.put(customer.getEmail(), customer);
+    }
+
     @Override
-    public List<FlipFitGym> fetchGymsByDate(Date date) { return null; }
+    public List<FlipFitGym> fetchGymsByDate(Date date) {
+        // This is a placeholder as the in-memory data model doesn't store bookings by date in an efficient way.
+        // It would require iterating through all bookings to find the gyms.
+        // For simplicity, we will assume this method fetches all verified gyms from the in-memory map.
+        return FlipFitData.gymMap.values().stream()
+                .filter(FlipFitGym::isVerified)
+                .collect(Collectors.toList());
+    }
+
     @Override
-    public void processPayment(FlipFitPayment payment) {}
+    public void processPayment(FlipFitPayment payment) {
+        FlipFitData.paymentMap.put(payment.getTransactionId(), payment);
+    }
 }

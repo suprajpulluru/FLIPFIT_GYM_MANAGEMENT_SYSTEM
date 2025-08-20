@@ -15,9 +15,9 @@ public interface FlipFitCustomerDAO {
 
     public String bookSlots(String bookingId, String slotId, String gymId, String type, Date date, String customerEmail);
 
-    public boolean isFull(String slotId, String date);
+    public boolean isFull(String slotId);
 
-    public boolean alreadyBooked(String slotId, String email, String date);
+    public boolean alreadyBooked(String slotId, String email);
 
     public boolean cancelBookingById(String bookingId);
 

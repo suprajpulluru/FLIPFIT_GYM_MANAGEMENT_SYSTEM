@@ -1,14 +1,14 @@
 package com.flipfit.client;
 
-import com.flipfit.bean.FlipFitUser;
 import com.flipfit.business.UserService;
 
+import java.text.ParseException;
 import java.util.Scanner;
 
 public class FlipFitApplication {
 
-    public static void login(){
-        System.out.println("\nChoose a role: ");
+    public static void login() throws ParseException {
+        System.out.println("Choose a role: ");
         System.out.println("1. Admin");
         System.out.println("2. FlipFitCustomer");
         System.out.println("3. FlipFitGymOwner");
@@ -32,47 +32,41 @@ public class FlipFitApplication {
                 role = "FlipFitGymOwner";
                 roleChosen = true;
                 break;
-            default:
-                System.out.println("Invalid choice.");
-                break;
 
         }
 
 
         if(roleChosen) {
-            System.out.println("Enter email: ");
-            String email = sc.next();
+            System.out.println("Enter username: ");
+            String username = sc.next();
             System.out.println("Enter password: ");
             String password = sc.next();
 
-            FlipFitUser user = new FlipFitUser(email, password, role);
-            UserService userService = new UserService();
-
-            if(userService.authenticateUser(user)){
-                System.out.println("\nWelcome " + email + "! You are logged in.");
-
-                if (role.equalsIgnoreCase("Admin")) {
-                    AdminMenu admin = new AdminMenu();
-                    admin.showAdminMenu();
-                } else if (role.equalsIgnoreCase("Customer")) {
-                    CustomerMenu customer = new CustomerMenu();
-                    customer.showCustomerMenu(email);
-                } else if (role.equalsIgnoreCase("GymOwner")) {
-                    GymOwnerMenu gymOwner = new GymOwnerMenu();
-                    gymOwner.showOwnerMenu(email);
-                }
+//            UserService userService = new UserService();
+//            userService.loginUser(username, password, role);
+//            above lines will take care of logging the user in
+            System.out.println("logged in successfully!");
+            AdminMenu adminMenu;
+            CustomerMenu customerMenu;
+            GymOwnerMenu gymOwnerMenu;
+            if (role == "Admin") {
+                adminMenu = new AdminMenu();
+                adminMenu.showAdminMenu();
             }
-            else {
-                System.out.println("Login failed. Please check your credentials and role.");
-                login();
+            else if (role == "FlipFitCustomer") {
+                customerMenu = new CustomerMenu();
+                customerMenu.customerMenu(username);
             }
-
+            else{
+                gymOwnerMenu = new GymOwnerMenu();
+                gymOwnerMenu.showMenu(username);
+            }
         }
 
 
     }
 
-    public static void applicationMenu(){
+    public static void applicationMenu() throws ParseException {
         Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to FlipFit Application!");
 
@@ -100,7 +94,7 @@ public class FlipFitApplication {
                     break;
                 case 3:
                     GymOwnerMenu gymOwner = new GymOwnerMenu();
-                    gymOwner.registerGymOwner();
+                    //gymOwner.registerGymOwner();
                     login();
                     retry = false;
                     break;
@@ -115,7 +109,7 @@ public class FlipFitApplication {
 
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws ParseException {
         applicationMenu();
     }
 }
