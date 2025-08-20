@@ -108,17 +108,6 @@ public class AdminMenu {
         }
     }
 
-    public void removeGymOwner() {
-        System.out.println("\n--- Remove Gym Owner ---");
-        System.out.print("Enter the email of the Gym Owner to remove: ");
-        String email = scanner.next();
-        if (adminService.removeGymOwner(email)) {
-            System.out.println("Gym Owner " + email + " and associated data removed successfully.");
-        } else {
-            System.out.println("Failed to remove Gym Owner. Owner not found or an error occurred.");
-        }
-    }
-
     public void showAdminMenu() {
         while (true) {
             System.out.println("\n--- Admin Menu ---");
@@ -131,8 +120,7 @@ public class AdminMenu {
             System.out.println("7. Approve Single Gym Owner Request");
             System.out.println("8. Approve Single Gym Request");
             System.out.println("9. Add New Gym Owner");
-            System.out.println("10. Remove Gym Owner");
-            System.out.println("11. Exit");
+            System.out.println("10. Exit");
 
             try {
                 System.out.print("Enter your choice: ");
@@ -166,9 +154,6 @@ public class AdminMenu {
                         addGymOwner();
                         break;
                     case 10:
-                        removeGymOwner();
-                        break;
-                    case 11:
                         System.out.println("Exiting Admin Menu.");
                         return;
                     default:

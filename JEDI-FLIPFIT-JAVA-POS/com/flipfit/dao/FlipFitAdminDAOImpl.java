@@ -68,25 +68,4 @@ public class FlipFitAdminDAOImpl implements FlipFitAdminDAO {
         });
         System.out.println("All pending gym requests have been approved.");
     }
-
-    public boolean deleteGymOwner(String email) {
-        FlipFitGymOwner owner = FlipFitData.gymOwnerMap.remove(email);
-        if (owner != null) {
-            // Also delete related user, gyms, and their slots
-            FlipFitData.userMap.remove(email);
-            List<String> gymIdsToDelete = FlipFitData.gymMap.values().stream()
-                    .filter(g -> g.getOwnerEmail().equals(email))
-                    .map(FlipFitGym::getGymId)
-                    .collect(Collectors.toList());
-
-            for (String gymId : gymIdsToDelete) {
-                FlipFitData.gymMap.remove(gymId);
-                // Also remove associated slots
-                FlipFitData.slotMap.values().removeIf(s -> s.getGymId().equals(gymId));
-            }
-            System.out.println("Gym owner " + email + " and associated data have been deleted.");
-            return true;
-        }
-        return false;
-    }
 }

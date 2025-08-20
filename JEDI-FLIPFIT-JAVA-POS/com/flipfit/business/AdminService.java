@@ -55,8 +55,4 @@ public class AdminService {
         System.out.println("Successfully approved all pending gym requests!");
         return true;
     }
-
-    public boolean removeGymOwner(String email) {
-        return adminDAO.deleteGymOwner(email);
-    }
 }

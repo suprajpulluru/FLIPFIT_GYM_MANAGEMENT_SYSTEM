@@ -22,5 +22,4 @@ public interface FlipFitAdminDAO {
 
     public void approveAllGymRequest();
 
-    public boolean deleteGymOwner(String email);
 }
