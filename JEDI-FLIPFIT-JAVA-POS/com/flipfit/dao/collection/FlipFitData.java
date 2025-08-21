@@ -58,7 +58,7 @@ public class FlipFitData {
         userMap.put(owner2.getEmail(), owner2);
 
         // Hardcoded Gyms
-        gymMap.put("GYM001", new FlipFitGym("GYM001", "Flex Fit Gym", "owner1@gmail.com", "123 Main St, Anytown", 5, 10, true)); // Verified
+        gymMap.put("GYM001", new FlipFitGym("GYM001", "Flex Fit Gym", "owner1@gmail.com", "lmao", 5, 10, true)); // Verified
         gymMap.put("GYM002", new FlipFitGym("GYM002", "Hardcore Fitness", "owner1@gmail.com", "456 Side Ave, Anytown", 4, 15, true)); // Verified
         gymMap.put("GYM003", new FlipFitGym("GYM003", "Quick Flex", "owner2@gmail.com", "789 Broadway, Anytown", 6, 8, false)); // Pending verification
 
