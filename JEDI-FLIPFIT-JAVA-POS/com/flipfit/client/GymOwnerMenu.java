@@ -9,19 +9,11 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
-/**
- * Client menu for Gym Owner functionalities. It interacts with the GymOwnerService
- * to perform operations based on user input.
- */
 public class GymOwnerMenu {
 
     private final GymOwnerService gymOwnerService = new GymOwnerService();
     private final Scanner scanner = new Scanner(System.in);
 
-    /**
-     * Displays the main menu for a logged-in gym owner and handles user interaction.
-     * @param gymOwnerEmail The email of the currently logged-in owner.
-     */
     public void showMenu(String gymOwnerEmail) {
         System.out.println("\nLogin Successful! Welcome, " + gymOwnerEmail);
 

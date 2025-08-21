@@ -38,7 +38,7 @@ public class FlipFitApplication {
 
 
         if(roleChosen) {
-            System.out.println("Enter username: ");
+            System.out.println("Enter email: ");
             String email = sc.next();
             System.out.println("Enter password: ");
             String password = sc.next();
@@ -52,10 +52,10 @@ public class FlipFitApplication {
                 if (role.equalsIgnoreCase("Admin")) {
                     AdminMenu admin = new AdminMenu();
                     admin.showAdminMenu();
-                } else if (role.equalsIgnoreCase("Customer")) {
+                } else if (role.equalsIgnoreCase("FlipFitCustomer")) {
                     CustomerMenu customer = new CustomerMenu();
                     customer.customerMenu(email);
-                } else if (role.equalsIgnoreCase("GymOwner")) {
+                } else if (role.equalsIgnoreCase("FlipFitGymOwner")) {
                     GymOwnerMenu gymOwner = new GymOwnerMenu();
                     gymOwner.showMenu(email);
                 }
@@ -96,7 +96,7 @@ public class FlipFitApplication {
                     break;
                 case 3:
                     GymOwnerMenu gymOwner = new GymOwnerMenu();
-                    //gymOwner.registerGymOwner();
+//                    gymOwner.registerGymOwner();
                     login();
                     retry = false;
                     break;

@@ -42,8 +42,6 @@ public class CustomerService {
 
 
     public boolean cancelBooking(String bookingId, String email) {
-        // Here you could add logic to ensure a customer only cancels their own booking.
-        // For now, we will just call the DAO.
         return customerDAO.cancelBookingById(bookingId);
     }
 

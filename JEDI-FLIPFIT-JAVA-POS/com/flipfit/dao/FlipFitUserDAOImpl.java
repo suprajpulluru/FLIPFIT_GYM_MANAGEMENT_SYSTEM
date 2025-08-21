@@ -15,11 +15,11 @@ public class FlipFitUserDAOImpl implements FlipFitUserDAO {
             System.out.println(user.getEmail() + " " + user.getPassword() + " " + "Admin");
             isUserValid = true;
         }
-        else if (user.getPassword().equals("customer123") && user.getRoleId().equalsIgnoreCase("Customer")) {
+        else if (user.getPassword().equals("customer123") && user.getRoleId().equalsIgnoreCase("FlipFitCustomer")) {
             System.out.println(user.getEmail() + " " + user.getPassword() + " " + "Customer");
             isUserValid = true;
         }
-        else if (user.getPassword().equals("gymowner123") && user.getRoleId().equalsIgnoreCase("Owner")) {
+        else if (user.getPassword().equals("gymowner123") && user.getRoleId().equalsIgnoreCase("FlipFitGymOwner")) {
             System.out.println(user.getEmail() + " " + user.getPassword() + " " + "Owner");
             isUserValid = true;
         }

@@ -4,7 +4,11 @@ import com.flipfit.bean.FlipFitGym;
 import com.flipfit.bean.FlipFitGymOwner;
 import com.flipfit.bean.FlipFitSlots;
 import com.flipfit.dao.collection.FlipFitData;
+import com.flipfit.utils.DbConnection;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -34,7 +38,31 @@ public class FlipFitGymOwnerDAOImpl implements FlipFitGymOwnerDAO {
 
     @Override
     public void addGym(FlipFitGym gymDetails) {
-        FlipFitData.gymMap.put(gymDetails.getGymId(), gymDetails);
+        Connection connection = null;
+        String INSERT_GYM_SQL = "INSERT INTO gym"
+                + "  (gymId, gymName, ownerEmail, address, slotCount, seatsPerSlotCount, isVerified) VALUES "
+                + " (?, ?, ?, ?, ?, ?, ?);";
+        System.out.println(INSERT_GYM_SQL);
+        // Step 1: Establishing a Connection
+        try {connection = DbConnection.getConnection();
+
+            // Step 2:Create a statement using connection object
+            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_GYM_SQL);
+            preparedStatement.setString(1, gymDetails.getGymId());
+            preparedStatement.setString(2, gymDetails.getGymName());
+            preparedStatement.setString(3, gymDetails.getOwnerEmail());
+            preparedStatement.setString(4, gymDetails.getAddress());
+            preparedStatement.setInt(5, gymDetails.getSlotCount());
+            preparedStatement.setInt(6, gymDetails.getSeatsPerSlotCount());
+            preparedStatement.setBoolean(7, gymDetails.isVerified());
+
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            preparedStatement.executeUpdate();
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        //FlipFitData.gymMap.put(gymDetails.getGymId(), gymDetails);
     }
 
     @Override

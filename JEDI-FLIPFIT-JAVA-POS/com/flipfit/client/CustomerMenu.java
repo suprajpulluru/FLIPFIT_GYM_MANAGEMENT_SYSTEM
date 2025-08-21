@@ -71,13 +71,7 @@ import com.flipfit.bean.*;
 import com.flipfit.business.CustomerService;
 import com.flipfit.business.UserService;
 import com.flipfit.utils.IdGenerator;
-/*
- *@Author : "Aditi Baveja"
- *@ClassName: "GymCustomerMenu"
- *@Exceptions: "java.text.ParseException"
- *@Version : "1.0"
- *@See : "com.flipkart.bean.GymCustomer, com.flipkart.bean.GymCentre, com.flipkart.bean.Slot, com.flipkart.bean.Booking, com.flipkart.bean.Payment, com.flipkart.business.GymCustomerService, com.flipkart.business.GymUserService, java.util.Scanner"
- */
+
 public class CustomerMenu {
 
     FlipFitCustomer customer = new FlipFitCustomer();
@@ -98,7 +92,7 @@ public class CustomerMenu {
         System.out.print("Enter Address: ");
         customer.setAddress(sc.next());
         UserService userBusiness = new UserService();
-        //userBusiness.registerCustomer(customer);
+        userBusiness.registerCustomer(customer);
 
         System.out.println("Customer registered successfully!");
 
