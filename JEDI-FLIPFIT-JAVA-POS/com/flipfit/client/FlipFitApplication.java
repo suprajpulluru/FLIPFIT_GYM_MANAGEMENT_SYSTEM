@@ -55,7 +55,7 @@ public class FlipFitApplication {
                 } else if (role.equalsIgnoreCase("FlipFitCustomer")) {
                     CustomerMenu customer = new CustomerMenu();
                     customer.customerMenu(email);
-                } else if (role.equalsIgnoreCase("GymOwner")) {
+                } else if (role.equalsIgnoreCase("FlipFitGymOwner")) {
                     GymOwnerMenu gymOwner = new GymOwnerMenu();
                     gymOwner.showMenu(email);
                 }
@@ -96,7 +96,7 @@ public class FlipFitApplication {
                     break;
                 case 3:
                     GymOwnerMenu gymOwner = new GymOwnerMenu();
-                    //gymOwner.registerGymOwner();
+                    gymOwner.registerGymOwner();
                     login();
                     retry = false;
                     break;

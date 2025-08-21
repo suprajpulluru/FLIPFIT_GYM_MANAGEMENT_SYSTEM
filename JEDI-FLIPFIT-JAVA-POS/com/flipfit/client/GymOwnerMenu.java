@@ -1,10 +1,12 @@
 package com.flipfit.client;
 import java.util.Date;
 
+import com.flipfit.bean.FlipFitCustomer;
 import com.flipfit.bean.FlipFitGym;
 import com.flipfit.bean.FlipFitGymOwner;
 import com.flipfit.bean.FlipFitSlots;
 import com.flipfit.business.GymOwnerService;
+import com.flipfit.business.UserService;
 
 import java.util.List;
 import java.util.Scanner;
@@ -16,8 +18,12 @@ import java.util.UUID;
  */
 public class GymOwnerMenu {
 
+    FlipFitGymOwner gymowner = new FlipFitGymOwner();
+
+
     private final GymOwnerService gymOwnerService = new GymOwnerService();
     private final Scanner scanner = new Scanner(System.in);
+
 
     /**
      * Displays the main menu for a logged-in gym owner and handles user interaction.
@@ -71,6 +77,26 @@ public class GymOwnerMenu {
                     System.out.println("Invalid choice. Please try again.");
             }
         }
+    }
+
+    public void registerGymOwner() {
+        System.out.print("Enter email: ");
+        gymowner.setEmail(scanner.next());
+        System.out.print("Enter password: ");
+        gymowner.setPassword(scanner.next());
+        System.out.print("Enter Name: ");
+        gymowner.setName(scanner.next());
+        System.out.print("Enter Phone Number: ");
+        gymowner.setPhoneNumber(scanner.next());
+        System.out.print("Enter Age: ");
+        gymowner.setAadharNumber(scanner.next());
+        System.out.print("Enter Address: ");
+        gymowner.setPanNumber(scanner.next());
+        UserService userBusiness = new UserService();
+        userBusiness.registerGymOwner(gymowner);
+
+        System.out.println("Customer registered successfully!");
+
     }
 
     // Unchanged methods...

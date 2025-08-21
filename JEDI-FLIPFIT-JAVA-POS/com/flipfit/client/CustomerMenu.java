@@ -1,67 +1,3 @@
-//package com.flipfit.client;
-//
-//import java.util.Scanner;
-
-//public class CustomerMenu {
-//
-//    Scanner sc = new Scanner(System.in);
-//
-//    public void registerCustomer() {
-//        System.out.println("Customer registered successfully!");
-//
-//    }
-//
-//    public void viewGyms(String email)  {
-//        System.out.println("Gyms are: ");
-//    }
-//
-//
-//    public void editProfile(String email) {
-//        System.out.println("Successfully edited your profile.");
-//    }
-//
-//
-//
-//    public void getGyms() {
-//        System.out.println("Gyms are: ");
-//    }
-//
-//
-//    public void cancelBooking(String email) {
-//        System.out.println("Booking cancelled");
-//    }
-//
-//    public void showCustomerMenu(String email) {
-//        int choice = 0;
-//
-//        while (choice != 5) {
-//            System.out.println("Menu:-");
-//            System.out.println("1.Search Gyms \n2.View Booked Slots \n3.Cancel Booked Slots \n4.Edit Profile \n5.Exit");
-//            System.out.print("Enter your choice: ");
-//            choice = sc.nextInt();
-//
-//            switch (choice) {
-//                case 1:
-//                    viewGyms(email);
-//                    break;
-//                case 2:
-//                    System.out.println("Booked slots are: ");
-//                    break;
-//                case 3:
-//                    cancelBooking(email);
-//                    break;
-//                case 4:
-//                    editProfile(email);
-//                    break;
-//                case 5:
-//                    break;
-//                default:
-//                    System.out.println("Invalid choice!");
-//            }
-//        }
-//    }
-//}
-
 package com.flipfit.client;
 
 import java.text.ParseException;
@@ -71,13 +7,7 @@ import com.flipfit.bean.*;
 import com.flipfit.business.CustomerService;
 import com.flipfit.business.UserService;
 import com.flipfit.utils.IdGenerator;
-/*
- *@Author : "Aditi Baveja"
- *@ClassName: "GymCustomerMenu"
- *@Exceptions: "java.text.ParseException"
- *@Version : "1.0"
- *@See : "com.flipkart.bean.GymCustomer, com.flipkart.bean.GymCentre, com.flipkart.bean.Slot, com.flipkart.bean.Booking, com.flipkart.bean.Payment, com.flipkart.business.GymCustomerService, com.flipkart.business.GymUserService, java.util.Scanner"
- */
+
 public class CustomerMenu {
 
     FlipFitCustomer customer = new FlipFitCustomer();
@@ -98,7 +28,7 @@ public class CustomerMenu {
         System.out.print("Enter Address: ");
         customer.setAddress(sc.next());
         UserService userBusiness = new UserService();
-        //userBusiness.registerCustomer(customer);
+        userBusiness.registerCustomer(customer);
 
         System.out.println("Customer registered successfully!");
 
