@@ -11,8 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static com.flipfit.dao.FlipFitGymOwnerDAOImpl.printSQLException;
-import static com.flipfit.dao.collection.FlipFitData.userMap;
 
 /*
  *@Author : "Gaurav"
@@ -37,9 +35,9 @@ public class FlipFitUserDAOImpl implements FlipFitUserDAO {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 if (user.getPassword().equals(rs.getString("password"))
-                        && user.getRoleId().equalsIgnoreCase(rs.getString("role"))) {
+                        && user.getRoleId().equalsIgnoreCase(rs.getString("roleId"))) {
                     System.out.println(
-                            rs.getString("email") + " " + rs.getString("password") + " " + rs.getString("role"));
+                            rs.getString("email") + " " + rs.getString("password") + " " + rs.getString("roleId"));
                     isUserValid = true;
                 }
             }
@@ -60,11 +58,11 @@ public class FlipFitUserDAOImpl implements FlipFitUserDAO {
             connection.setAutoCommit(false); // Start transaction
 
             // 1. Insert into the 'user' table
-            String queryUser = "INSERT INTO user (email, password, role) VALUES (?, ?, ?)";
+            String queryUser = "INSERT INTO user (email, password, roleId) VALUES (?, ?, ?)";
             PreparedStatement preparedStatementUser = connection.prepareStatement(queryUser);
             preparedStatementUser.setString(1, customer.getEmail());
             preparedStatementUser.setString(2, customer.getPassword());
-            preparedStatementUser.setString(3, "Customer");
+            preparedStatementUser.setString(3, "2");
             int userRows = preparedStatementUser.executeUpdate();
 
             // 2. Insert into the 'customer' table
@@ -112,15 +110,15 @@ public class FlipFitUserDAOImpl implements FlipFitUserDAO {
             connection.setAutoCommit(false); // Start transaction
 
             // 1. Insert into the 'user' table FIRST
-            String queryUser = "INSERT INTO user (email, password, role) VALUES (?, ?, ?)";
+            String queryUser = "INSERT INTO user (email, password, roleId) VALUES (?, ?, ?)";
             PreparedStatement preparedStatementUser = connection.prepareStatement(queryUser);
             preparedStatementUser.setString(1, gymOwner.getEmail());
             preparedStatementUser.setString(2, gymOwner.getPassword());
-            preparedStatementUser.setString(3, "GymOwner");
+            preparedStatementUser.setString(3, "3");
             int userRows = preparedStatementUser.executeUpdate();
 
             // 2. Insert into the 'gymOwner' table SECOND
-            String queryGymOwner = "INSERT INTO gymOwner (email, name, phoneNum, aadharNum, panNum, isVerified) VALUES (?, ?, ?, ?, ?, ?)";
+            String queryGymOwner = "INSERT INTO gym_owner (email, name, phoneNumber, aadharNumber, panNumber, isVerified) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatementGymOwner = connection.prepareStatement(queryGymOwner);
             preparedStatementGymOwner.setString(1, gymOwner.getEmail());
             preparedStatementGymOwner.setString(2, gymOwner.getName());

@@ -5,12 +5,10 @@ import com.flipfit.bean.FlipFitCustomer;
 import com.flipfit.bean.FlipFitGym;
 import com.flipfit.bean.FlipFitPayment;
 import com.flipfit.bean.FlipFitSlots;
-import com.flipfit.dao.FlipFitCustomerDAO;
 import com.flipfit.dao.FlipFitCustomerDAOImpl;
 import com.flipfit.utils.*;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /*
@@ -68,7 +66,7 @@ public class CustomerService implements CustomerServiceInterface {
         return customerDAO.fetchSlotsByGym(gymId);
     }
 
-    public String bookSlot(String gymId, String slotId, String email, Date date) {
+    public String bookSlot(String gymId, String slotId, String email) {
         // Check if gym is approved
         if (!customerDAO.checkGymApprove(gymId)) {
             return "Gym is not approved.";
@@ -90,18 +88,7 @@ public class CustomerService implements CustomerServiceInterface {
         }
 
         String bookingId = IdGenerator.generateId("Booking");
-        return customerDAO.bookSlots(bookingId, slotId, gymId, "Confirmed", date, email);
-    }
-
-    public List<FlipFitGym> getGymsByDate(String dateStr) {
-        try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = dateFormat.parse(dateStr);
-            return customerDAO.fetchGymsByDate(date);
-        } catch (ParseException e) {
-            System.out.println("Invalid date format. Please use yyyy-MM-dd.");
-            return new ArrayList<>();
-        }
+        return customerDAO.bookSlots(bookingId, slotId, gymId, "Confirmed", email);
     }
 
     public void makePayment(FlipFitPayment payment) {

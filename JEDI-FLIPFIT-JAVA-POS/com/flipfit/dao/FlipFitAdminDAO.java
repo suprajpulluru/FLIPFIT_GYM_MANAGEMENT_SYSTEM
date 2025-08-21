@@ -27,7 +27,7 @@ public interface FlipFitAdminDAO {
 
     public void approveAllOwnerRequest();
 
-    public void approveSingleGymRequest(String gymId);
+    public boolean approveSingleGymRequest(String gymId);
 
     public void approveAllGymRequest();
 

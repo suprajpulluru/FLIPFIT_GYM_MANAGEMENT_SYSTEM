@@ -1,11 +1,11 @@
 package com.flipfit.client;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import com.flipfit.bean.*;
 import com.flipfit.business.CustomerService;
 import com.flipfit.business.UserService;
+import com.flipfit.dao.FlipFitUserDAOImpl;
 import com.flipfit.utils.IdGenerator;
 
 
@@ -23,23 +23,27 @@ public class CustomerMenu {
     Scanner sc = new Scanner(System.in);
 
     public void registerCustomer() {
-        System.out.print("Enter email: ");
-        customer.setEmail(sc.next());
-        System.out.print("Enter password: ");
-        customer.setPassword(sc.next());
+        System.out.print("Enter Email: ");
+        String email = sc.next();
+        System.out.print("Enter Password: ");
+        String password = sc.next();
         System.out.print("Enter Name: ");
-        customer.setName(sc.next());
+        sc.nextLine(); // Consume newline
+        String name = sc.next();
         System.out.print("Enter Phone Number: ");
-        customer.setPhoneNumber(sc.next());
+        String phoneNumber = sc.next();
         System.out.print("Enter Age: ");
-        customer.setAge(Integer.valueOf(sc.next()));
+        int age = sc.nextInt();
         System.out.print("Enter Address: ");
-        customer.setAddress(sc.next());
-        UserService userBusiness = new UserService();
-        userBusiness.registerCustomer(customer);
+        String address = sc.next();
 
-        System.out.println("Customer registered successfully!");
-
+        FlipFitUserDAOImpl userDAO = new FlipFitUserDAOImpl();
+        FlipFitCustomer newCustomer = new FlipFitCustomer(email, password, "2",  name, phoneNumber, age, address);
+        if (userDAO.registerCustomer(newCustomer)) {
+            System.out.println("New Gym Customer registered successfully.");
+        } else {
+            System.out.println("Registration failed. Email might already be in use.");
+        }
     }
 
 
@@ -48,7 +52,6 @@ public class CustomerMenu {
         // --- 1. SEARCH FOR GYMS ---
         System.out.println("\nHow would you like to search for gyms?");
         System.out.println("1. By Address");
-        System.out.println("2. By Date");
         System.out.print("Enter your choice: ");
         int choice = sc.nextInt();
 
@@ -57,10 +60,6 @@ public class CustomerMenu {
             System.out.print("Enter your address: ");
             String address = sc.next();
             gyms = customerBusiness.getGymsByCity(address);
-        } else if (choice == 2) {
-            System.out.print("Enter Date (yyyy-MM-dd): ");
-            String dateStr = sc.next();
-            gyms = customerBusiness.getGymsByDate(dateStr);
         } else {
             System.out.println("Invalid choice.");
             return;
@@ -91,11 +90,11 @@ public class CustomerMenu {
         }
 
         System.out.println("\n--- Available Slots for Gym " + gymId + " ---");
-        System.out.printf("| %-15s | %-15s | %-15s | %-15s | %-15s |%n", "SLOT ID", "DATE", "START TIME", "END TIME", "SEATS AVAILABLE");
+        System.out.printf("| %-15s | %-15s | %-15s | %-15s |%n", "SLOT ID", "START TIME", "END TIME", "SEATS AVAILABLE");
         System.out.println("------------------------------------------------------------------------------------------------");
         for (FlipFitSlots slot : slots) {
             int availableSeats = slot.getNumOfSeats() - slot.getNumOfSeatsBooked();
-            System.out.printf("| %-15s | %-15s | %-15s | %-15s | %-15s |%n", slot.getSlotId(), new SimpleDateFormat("yyyy-MM-dd").format(slot.getDate()), slot.getStartTime(), slot.getEndTime(), availableSeats);
+            System.out.printf("| %-15s | %-15s | %-15s | %-15s |%n", slot.getSlotId(), slot.getStartTime(), slot.getEndTime(), availableSeats);
         }
         System.out.println("------------------------------------------------------------------------------------------------");
 
@@ -103,23 +102,21 @@ public class CustomerMenu {
         System.out.print("\nEnter the Slot ID you want to book: ");
         String slotId = sc.next();
 
+        boolean found = false;
 
-
-        Date bookingDate = null;
         for (FlipFitSlots slot : slots) {
             if (slot.getSlotId().equals(slotId)) {
-                bookingDate = slot.getDate();
+                found = true;
                 break;
             }
         }
 
-        if (bookingDate == null) {
-            System.out.println("Invalid Slot ID.");
+        if (!found) {
             return;
         }
 
         // --- 4. BOOK SLOT AND PROCEED TO PAYMENT ---
-        String newBookingId = customerBusiness.bookSlot(gymId, slotId, email, bookingDate);
+        String newBookingId = customerBusiness.bookSlot(gymId, slotId, email);
 
         if (newBookingId != null) {
             System.out.println("\n*********************************");
@@ -221,14 +218,13 @@ public class CustomerMenu {
 
         System.out.println("\n--- Here are your current bookings ---");
         System.out.println("-------------------------------------------------------------------------------------");
-        System.out.printf("| %-20s | %-15s | %-15s | %-15s |%n", "BOOKING ID", "GYM ID", "SLOT ID", "DATE");
+        System.out.printf("| %-20s | %-15s | %-15s |%n", "BOOKING ID", "GYM ID", "SLOT ID");
         System.out.println("-------------------------------------------------------------------------------------");
         for (FlipFitBooking booking : bookings) {
             System.out.printf("| %-20s | %-15s | %-15s | %-15s |%n",
                     booking.getBookingId(),
                     booking.getGymId(),
-                    booking.getSlotId(),
-                    new SimpleDateFormat("yyyy-MM-dd").format(booking.getDate())
+                    booking.getSlotId()
             );
         }
         System.out.println("-------------------------------------------------------------------------------------");
@@ -266,14 +262,13 @@ public class CustomerMenu {
                         System.out.println("You have no booked slots.");
                     } else {
                         System.out.println("\n-------------------------------------------------------------------------------------");
-                        System.out.printf("| %-20s | %-15s | %-15s | %-15s |%n", "BOOKING ID", "GYM ID", "SLOT ID", "DATE");
+                        System.out.printf("| %-20s | %-15s | %-15s |%n", "BOOKING ID", "GYM ID", "SLOT ID");
                         System.out.println("-------------------------------------------------------------------------------------");
                         for (FlipFitBooking booking : bookings) {
                             System.out.printf("| %-20s | %-15s | %-15s | %-15s |%n",
                                     booking.getBookingId(),
                                     booking.getGymId(),
-                                    booking.getSlotId(),
-                                    new SimpleDateFormat("yyyy-MM-dd").format(booking.getDate())
+                                    booking.getSlotId()
                             );
                         }
                         System.out.println("-------------------------------------------------------------------------------------");

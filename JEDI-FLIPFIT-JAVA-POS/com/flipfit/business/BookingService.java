@@ -31,7 +31,6 @@ public class BookingService implements BookingServiceInterface{
     }
 
     public void bookSlot(String customerEmail, String gymId, String slotId) {
-        Date today = new Date();
 
         // Check if the slot is valid for the given gym
         if (!customerDAO.checkSlotExists(slotId, gymId)) {
@@ -50,7 +49,7 @@ public class BookingService implements BookingServiceInterface{
         }
 
         String newBookingId = UUID.randomUUID().toString(); // Generate a unique booking ID
-        String bookingId = customerDAO.bookSlots(newBookingId, slotId, gymId, "confirmed", today, customerEmail);
+        String bookingId = customerDAO.bookSlots(newBookingId, slotId, gymId, "confirmed", customerEmail);
         System.out.println("Booking Successful! Your Booking ID is: " + bookingId);
     }
 

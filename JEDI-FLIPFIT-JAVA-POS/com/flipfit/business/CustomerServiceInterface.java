@@ -3,10 +3,6 @@ package com.flipfit.business;
 import com.flipfit.bean.*;
 import com.flipfit.utils.IdGenerator;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
@@ -30,9 +26,7 @@ public interface CustomerServiceInterface {
 
     public List<FlipFitSlots> getSlotInGym(String gymId);
 
-    public String bookSlot(String gymId, String slotId, String email, Date date);
-
-    public List<FlipFitGym> getGymsByDate(String dateStr);
+    public String bookSlot(String gymId, String slotId, String email);
 
     public void makePayment(FlipFitPayment payment);
 

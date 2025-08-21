@@ -24,7 +24,7 @@ import java.util.List;
 public class GymOwnerService implements GymOwnerServiceInterface {
 
     // Using the interface for declaration, but instantiating the implementation
-    private final FlipFitGymOwnerDAO gymOwnerDAO = new FlipFitGymOwnerDAOImpl();
+    private final FlipFitGymOwnerDAOImpl gymOwnerDAO = new FlipFitGymOwnerDAOImpl();
 
     public FlipFitGymOwner getGymOwnerDetails(String gymOwnerEmailId) {
         System.out.println("Fetching details for gym owner: " + gymOwnerEmailId);

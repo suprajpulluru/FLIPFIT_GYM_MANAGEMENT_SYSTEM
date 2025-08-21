@@ -5,12 +5,10 @@ import com.flipfit.bean.FlipFitCustomer;
 import com.flipfit.bean.FlipFitGym;
 import com.flipfit.bean.FlipFitPayment;
 import com.flipfit.bean.FlipFitSlots;
-import com.flipfit.dao.collection.FlipFitData;
 import com.flipfit.utils.DbConnection;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.sql.PreparedStatement;
@@ -109,7 +107,6 @@ public class FlipFitCustomerDAOImpl implements FlipFitCustomerDAO {
                 booking.setSlotId(rs.getString("slotId"));
                 booking.setGymId(rs.getString("gymId"));
                 booking.setType(rs.getString("type"));
-                booking.setDate(rs.getDate("date"));
                 booking.setCustomerEmail(rs.getString("customerEmail"));
                 userBookings.add(booking);
             }
@@ -121,21 +118,20 @@ public class FlipFitCustomerDAOImpl implements FlipFitCustomerDAO {
 
 
     @Override
-    public String bookSlots(String bookingId, String slotId, String gymId, String type, Date date, String customerEmail) {
+    public String bookSlots(String bookingId, String slotId, String gymId, String type, String customerEmail) {
         Connection connection = null;
         try {
             connection = DbConnection.getConnection();
             connection.setAutoCommit(false); // Start transaction
 
             // 1. Insert the new booking
-            String insertBookingSQL = "INSERT INTO booking (bookingId, slotId, gymId, type, date, customerEmail) VALUES (?, ?, ?, ?, ?, ?)";
+            String insertBookingSQL = "INSERT INTO booking (bookingId, slotId, gymId, type, customerEmail) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement insertStmt = connection.prepareStatement(insertBookingSQL);
             insertStmt.setString(1, bookingId);
             insertStmt.setString(2, slotId);
             insertStmt.setString(3, gymId);
             insertStmt.setString(4, type);
-            insertStmt.setDate(5, new java.sql.Date(date.getTime()));
-            insertStmt.setString(6, customerEmail);
+            insertStmt.setString(5, customerEmail);
             insertStmt.executeUpdate();
 
             // 2. Update the seat count in the slot table
@@ -167,12 +163,12 @@ public class FlipFitCustomerDAOImpl implements FlipFitCustomerDAO {
     @Override
     public boolean isFull(String slotId) {
         Connection connection = null;
-        String query = "Select * slot where slotId=? and (numOfSeatsBooked>=numOfSeats)";
+        String query = "Select * from slot where slotId=? and (numOfSeatsBooked>=numOfSeats)";
         try {connection = DbConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
             preparedStatement.setString(1, slotId);
-            System.out.println(preparedStatement);
+//            System.out.println(preparedStatement);
 
             ResultSet rs = preparedStatement.executeQuery();
             return rs.next();
@@ -187,13 +183,13 @@ public class FlipFitCustomerDAOImpl implements FlipFitCustomerDAO {
     @Override
     public boolean alreadyBooked(String slotId, String email) {
         Connection connection = null;
-        String query = "select isVerified from Booking where slotId=? and customerEmail =  ?";
+        String query = "select bookingId from Booking where slotId=? and customerEmail =  ?";
         try {connection = DbConnection.getConnection();
 
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, slotId);
             preparedStatement.setString(2, email);
-            System.out.println(preparedStatement);
+//            System.out.println(preparedStatement);
 
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -261,13 +257,13 @@ public class FlipFitCustomerDAOImpl implements FlipFitCustomerDAO {
     @Override
     public boolean checkSlotExists(String slotId, String gymId) {
         Connection connection = null;
-        String query = "select isVerified from slot where slotId=? and gymId =  ?";
+        String query = "select slotId from slot where slotId=? and gymId =  ?";
         try {connection = DbConnection.getConnection();
 
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, slotId);
             preparedStatement.setString(2, gymId);
-            System.out.println(preparedStatement);
+//            System.out.println(preparedStatement);
 
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -287,7 +283,7 @@ public class FlipFitCustomerDAOImpl implements FlipFitCustomerDAO {
 
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, gymId);
-            System.out.println(preparedStatement);
+//            System.out.println(preparedStatement);
 
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -355,35 +351,6 @@ public class FlipFitCustomerDAOImpl implements FlipFitCustomerDAO {
                 printSQLException(e);
             }
         }
-    }
-
-    @Override
-    public List<FlipFitGym> fetchGymsByDate(Date date) {
-        Connection connection = null;
-        List<FlipFitGym> gyms = new ArrayList<>();
-        // This query finds all unique gym IDs that have slots on a given date,
-        // and then joins with the gym table to get their details.
-        String query = "SELECT g.* FROM gym g JOIN slot s ON g.gymId = s.gymId WHERE s.date = ? AND g.isVerified = 1 GROUP BY g.gymId";
-
-        try {
-            connection = DbConnection.getConnection();
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setDate(1, new java.sql.Date(date.getTime()));
-            ResultSet rs = statement.executeQuery();
-
-            while (rs.next()) {
-                FlipFitGym gym = new FlipFitGym();
-                gym.setGymId(rs.getString("gymId"));
-                gym.setGymName(rs.getString("gymName"));
-                gym.setAddress(rs.getString("address"));
-                gym.setOwnerEmail(rs.getString("ownerEmail"));
-                gym.setVerified(rs.getBoolean("isVerified"));
-                gyms.add(gym);
-            }
-        } catch (SQLException e) {
-            printSQLException(e);
-        }
-        return gyms;
     }
 
     @Override

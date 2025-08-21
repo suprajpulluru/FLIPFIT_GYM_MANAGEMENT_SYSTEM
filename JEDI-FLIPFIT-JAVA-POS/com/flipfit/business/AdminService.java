@@ -34,9 +34,9 @@ public class AdminService implements AdminServiceInterface{
     public boolean approveSingleGymOwnerRequest(String gymOwnerEmail) {
         boolean success = adminDAO.approveSingleOwnerRequest(gymOwnerEmail);
         if(success) {
-            System.out.println("Approved gym owner request! " + gymOwnerEmail);
+            System.out.println("Approved gym owner request: " + gymOwnerEmail);
         } else {
-            System.out.println("Failed to approve gym owner request! " + gymOwnerEmail);
+            System.out.println("Failed to approve gym owner request: " + gymOwnerEmail);
         }
         return success;
     }
@@ -53,9 +53,13 @@ public class AdminService implements AdminServiceInterface{
     }
 
     public boolean approveSingleGymRequest(String gymId) {
-        adminDAO.approveSingleGymRequest(gymId);
-        System.out.println("Successfully approved gym request! " + gymId);
-        return true;
+        boolean success = adminDAO.approveSingleGymRequest(gymId);
+        if(success){
+            System.out.println("Successfully approved gym request: " + gymId);
+            return true;
+        }
+        System.out.println("Failed to approve gym request: " + gymId);
+        return false;
     }
 
     public boolean approveAllPendingGymRequests() {

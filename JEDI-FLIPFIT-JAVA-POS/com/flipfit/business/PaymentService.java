@@ -62,7 +62,7 @@ import java.util.List;
  *@ClassName: "PaymentService"
  *@Exceptions: "N/A"
  *@Version : "1.0"
- *@See : "com.flipfit.bean.PaymentService"
+ *@See : "com.flipfit.bean.PaymewntService"
  */
 public class PaymentService implements PaymentServiceInterface {
 

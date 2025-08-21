@@ -21,7 +21,7 @@ public interface FlipFitCustomerDAO {
 
     public List<FlipFitBooking> fetchBookedSlots(String email);
 
-    public String bookSlots(String bookingId, String slotId, String gymId, String type, Date date, String customerEmail);
+    public String bookSlots(String bookingId, String slotId, String gymId, String type, String customerEmail);
 
     public boolean isFull(String slotId);
 
@@ -34,8 +34,6 @@ public interface FlipFitCustomerDAO {
     public boolean checkGymApprove(String gymId);
 
     public void editProfile(FlipFitCustomer customer);
-
-    public List<FlipFitGym> fetchGymsByDate(Date date);
 
     public void processPayment(FlipFitPayment payment);
 }

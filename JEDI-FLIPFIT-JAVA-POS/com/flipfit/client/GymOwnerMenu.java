@@ -7,6 +7,7 @@ import com.flipfit.bean.FlipFitGymOwner;
 import com.flipfit.bean.FlipFitSlots;
 import com.flipfit.business.GymOwnerService;
 import com.flipfit.business.UserService;
+import com.flipfit.dao.FlipFitUserDAOImpl;
 
 import java.util.List;
 import java.util.Scanner;
@@ -48,12 +49,13 @@ public class GymOwnerMenu {
             System.out.println("4. Register a New Gym");
             System.out.println("5. Edit a Gym's Details");
             System.out.println("6. Manage Slots for a Gym");
-            System.out.println("7. Logout");
+            System.out.println("7. Exit");
             System.out.print("Choose an option: ");
 
             int choice;
             try {
-                choice = Integer.parseInt(scanner.nextLine());
+                choice = scanner.nextInt();
+                scanner.nextLine();
             } catch (NumberFormatException e) {
                 System.out.println("❌ Invalid input. Please enter a number.");
                 continue;
@@ -88,23 +90,27 @@ public class GymOwnerMenu {
     }
 
     public void registerGymOwner() {
-        System.out.print("Enter email: ");
-        gymowner.setEmail(scanner.next());
-        System.out.print("Enter password: ");
-        gymowner.setPassword(scanner.next());
+        System.out.print("Enter Email: ");
+        String email = scanner.next();
+        System.out.print("Enter Password: ");
+        String password = scanner.next();
         System.out.print("Enter Name: ");
-        gymowner.setName(scanner.next());
+        scanner.nextLine(); // Consume newline
+        String name = scanner.next();
         System.out.print("Enter Phone Number: ");
-        gymowner.setPhoneNumber(scanner.next());
-        System.out.print("Enter Age: ");
-        gymowner.setAadharNumber(scanner.next());
-        System.out.print("Enter Address: ");
-        gymowner.setPanNumber(scanner.next());
-        UserService userBusiness = new UserService();
-        userBusiness.registerGymOwner(gymowner);
+        String phoneNumber = scanner.next();
+        System.out.print("Enter Aadhar Number: ");
+        String aadhar = scanner.next();
+        System.out.print("Enter PAN Number: ");
+        String pan = scanner.next();
 
-        System.out.println("Customer registered successfully!");
-
+        FlipFitUserDAOImpl userDAO = new FlipFitUserDAOImpl();
+        FlipFitGymOwner newOwner = new FlipFitGymOwner(email, password, "3", name, phoneNumber, aadhar, pan);
+        if (userDAO.registerGymOwner(newOwner)) {
+            System.out.println("New Gym Owner registered successfully. Awaiting admin approval.");
+        } else {
+            System.out.println("Registration failed. Email might already be in use.");
+        }
     }
 
     // Unchanged methods...
@@ -170,10 +176,14 @@ public class GymOwnerMenu {
         String gymName = scanner.nextLine();
         System.out.print("Enter Gym Address: ");
         String gymAddress = scanner.nextLine();
+        System.out.print("Enter Number of Slots: ");
+        int slotCount = scanner.nextInt();
+        System.out.print("Enter Number of Seats Per Slot: ");
+        int seatsPerSlotCount = scanner.nextInt();
 
         String gymId = "G-" + UUID.randomUUID().toString().substring(0, 4).toUpperCase();
 
-        FlipFitGym newGym = new FlipFitGym(gymId, gymName, ownerEmail, gymAddress, 0, 0, false);
+        FlipFitGym newGym = new FlipFitGym(gymId, gymName, ownerEmail, gymAddress, slotCount, seatsPerSlotCount, false);
         gymOwnerService.addGym(newGym);
     }
 
@@ -226,8 +236,9 @@ public class GymOwnerMenu {
             System.out.println("Existing Slots:");
             // UPDATED display logic to match new bean fields
             slots.forEach(s -> System.out.println("  -> Start: " + s.getStartTime() + ", End: " + s.getEndTime() + ", Seats: " + s.getNumOfSeats() +
-                    ", Booked: " + s.getNumOfSeatsBooked() + ", Trainer: " + s.getTrainer()));
+                    ", Booked: " + s.getNumOfSeatsBooked()));
         }
+
 
         System.out.println("\n-- Add a New Slot --");
         try {
@@ -236,14 +247,11 @@ public class GymOwnerMenu {
             String startTime = scanner.nextLine();
             System.out.print("Enter End Time (e.g., 10:00): ");
             String endTime = scanner.nextLine();
-            System.out.print("Enter Trainer Name: ");
-            String trainer = scanner.nextLine();
             System.out.print("Enter Number of Seats: ");
             int numOfSeats = Integer.parseInt(scanner.nextLine());
 
-            // UPDATED constructor call to match new bean
-            // Assumes a new slot has 0 seats booked initially
-            FlipFitSlots newSlot = new FlipFitSlots(null, gymId, startTime, endTime, trainer, numOfSeats, 0, new Date());
+            String slotId = "S-" + UUID.randomUUID().toString().substring(0, 4).toUpperCase();
+            FlipFitSlots newSlot = new FlipFitSlots(slotId, gymId, startTime, endTime, numOfSeats, 0);
             gymOwnerService.addSlot(newSlot);
 
         } catch (NumberFormatException e) {

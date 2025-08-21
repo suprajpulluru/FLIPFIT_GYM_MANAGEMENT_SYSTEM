@@ -1,6 +1,5 @@
 package com.flipfit.bean;
 
-import java.util.Date;
 /*
  *@Author : "Asmitha Gangoni"
  *@ClassName: "FlipFitBooking"
@@ -13,19 +12,17 @@ public class FlipFitBooking {
     private String slotId;
     private String gymId;
     private String type;
-    private Date date;
     private String customerEmail;
 
     public FlipFitBooking() {
         super();
     }//default constructor
 
-    public FlipFitBooking(String bookingId, String slotId, String gymId, String type, Date date, String customerEmail) {
+    public FlipFitBooking(String bookingId, String slotId, String gymId, String type,String customerEmail) {
         this.bookingId = bookingId;
         this.slotId = slotId;
         this.gymId = gymId;
         this.type = type;
-        this.date = date;
         this.customerEmail = customerEmail;
     }
 
@@ -59,14 +56,6 @@ public class FlipFitBooking {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public String getCustomerEmail() {

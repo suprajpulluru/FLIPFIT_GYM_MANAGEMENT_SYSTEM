@@ -9,8 +9,6 @@ import com.flipfit.bean.FlipFitGymOwner;
 import com.flipfit.bean.FlipFitUser;
 import com.flipfit.business.AdminService;
 import com.flipfit.dao.FlipFitUserDAOImpl;
-import com.flipfit.dao.collection.FlipFitData;
-
 
 
 
@@ -101,7 +99,7 @@ public class AdminMenu {
         String password = scanner.next();
         System.out.print("Enter Name: ");
         scanner.nextLine(); // Consume newline
-        String name = scanner.nextLine();
+        String name = scanner.next();
         System.out.print("Enter Phone Number: ");
         String phoneNumber = scanner.next();
         System.out.print("Enter Aadhar Number: ");
@@ -109,12 +107,12 @@ public class AdminMenu {
         System.out.print("Enter PAN Number: ");
         String pan = scanner.next();
 
-//        FlipFitGymOwner newOwner = new FlipFitGymOwner(email, password, "GymOwner", name, phoneNumber, aadhar, pan);
-//        if (userDAO.registerGymOwner(newOwner)) {
-//            System.out.println("New Gym Owner registered successfully. Awaiting admin approval.");
-//        } else {
-//            System.out.println("Registration failed. Email might already be in use.");
-//        }
+        FlipFitGymOwner newOwner = new FlipFitGymOwner(email, password, "3", name, phoneNumber, aadhar, pan);
+        if (userDAO.registerGymOwner(newOwner)) {
+            System.out.println("New Gym Owner registered successfully. Awaiting admin approval.");
+        } else {
+            System.out.println("Registration failed. Email might already be in use.");
+        }
     }
 
     public void showAdminMenu() {

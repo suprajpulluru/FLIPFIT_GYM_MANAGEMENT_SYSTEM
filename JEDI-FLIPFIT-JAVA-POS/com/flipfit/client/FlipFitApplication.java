@@ -30,15 +30,15 @@ public class FlipFitApplication {
 
         switch (roleChoice){
             case 1:
-                role = "Admin";
+                role = "1";
                 roleChosen = true;
                 break;
             case 2:
-                role = "FlipFitCustomer";
+                role = "2";
                 roleChosen = true;
                 break;
             case 3:
-                role = "FlipFitGymOwner";
+                role = "3";
                 roleChosen = true;
                 break;
 
@@ -57,13 +57,13 @@ public class FlipFitApplication {
 
             if (userBusiness.authenticateUser(user)) {
                 System.out.println("\nWelcome " + email + "! You are logged in.");
-                if (role.equalsIgnoreCase("Admin")) {
+                if (role.equalsIgnoreCase("1")) {
                     AdminMenu admin = new AdminMenu();
                     admin.showAdminMenu();
-                } else if (role.equalsIgnoreCase("FlipFitCustomer")) {
+                } else if (role.equalsIgnoreCase("2")) {
                     CustomerMenu customer = new CustomerMenu();
                     customer.customerMenu(email);
-                } else if (role.equalsIgnoreCase("FlipFitGymOwner")) {
+                } else if (role.equalsIgnoreCase("3")) {
                     GymOwnerMenu gymOwner = new GymOwnerMenu();
                     gymOwner.showMenu(email);
                 }
