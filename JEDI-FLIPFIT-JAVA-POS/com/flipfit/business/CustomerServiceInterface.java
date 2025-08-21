@@ -9,6 +9,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
+/*
+ *@Author : "Harshita Kanwar"
+ *@ClassName: "CustomerServiceInterface"
+ *@Exceptions: "N/A"
+ *@Version : "1.0"
+ *@See : "com.flipfit.bean.CustomerServiceInterface"
+ */
 public interface CustomerServiceInterface {
     public FlipFitCustomer getProfile(FlipFitCustomer customer);
 

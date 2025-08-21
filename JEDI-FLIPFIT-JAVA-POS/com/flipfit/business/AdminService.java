@@ -1,4 +1,12 @@
 package com.flipfit.business;
+
+/*
+ *@Author : "Dhara Periwal"
+ *@ClassName: "AdminService"
+ *@Exceptions: "N/A"
+ *@Version : "1.0"
+ *@See : "com.flipfit.bean.AdminService"
+ */
 import java.util.*;
 
 import com.flipfit.dao.FlipFitAdminDAOImpl;

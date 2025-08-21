@@ -1,5 +1,13 @@
 package com.flipfit.business;
 
+
+/*
+ *@Author : "Akanksha"
+ *@ClassName: "GymOwnerServiceInterface"
+ *@Exceptions: "N/A"
+ *@Version : "1.0"
+ *@See : "com.flipfit.bean.GymOwnerServiceInterface"
+ */
 import com.flipfit.bean.FlipFitGym;
 import com.flipfit.bean.FlipFitGymOwner;
 import com.flipfit.bean.FlipFitSlots;

@@ -12,6 +12,14 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
+
+/*
+ *@Author : "Supraj Pulluru"
+ *@ClassName: "GymOwnerMenu"
+ *@Exceptions: "java.lang.Exception"
+ *@Version : "1.0"
+ *@See : "com.flipfit.bean.FlipFitGymOwner, com.flipfit.client.AdminMenu, com.flipfit.client.CustomerMenu, com.flipfit.client.GymOwnerMenu"
+ */
 /**
  * Client menu for Gym Owner functionalities. It interacts with the GymOwnerService
  * to perform operations based on user input.

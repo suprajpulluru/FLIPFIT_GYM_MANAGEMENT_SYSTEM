@@ -13,6 +13,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/*
+ *@Author : "Gaurav"
+ *@ClassName: "CustomerService"
+ *@Exceptions: "N/A"
+ *@Version : "1.0"
+ *@See : "com.flipfit.bean.CustomerService"
+ */
 public class CustomerService implements CustomerServiceInterface {
     List<FlipFitCustomer> customers = new ArrayList<>();
     List<FlipFitBooking> bookings = new ArrayList<>();

@@ -8,6 +8,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
+/*
+ *@Author : "Dhara Periwal"
+ *@ClassName: "FlipFitAdminDAOImpl"
+ *@Exceptions: "N/A"
+ *@Version : "1.0"
+ *@See : "com.flipfit.bean.FlipFitGym, com.flipfit.bean.FlipFitGymOwner, java.util.List"
+ */
+
 public class FlipFitAdminDAOImpl implements FlipFitAdminDAO {
     public List<FlipFitGymOwner> getAllGymOwners() {
         return new ArrayList<>(FlipFitData.gymOwnerMap.values());

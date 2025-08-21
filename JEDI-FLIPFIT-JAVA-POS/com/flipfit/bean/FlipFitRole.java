@@ -1,5 +1,11 @@
 package com.flipfit.bean;
-
+/*
+ *@Author : "Gaurav"
+ *@ClassName: "FlipFitRole"
+ *@Exceptions: "N/A"
+ *@Version : "1.0"
+ *@See : "java.util.Date"
+ */
 public class FlipFitRole {
     public int RoleId;
     public String RoleName;

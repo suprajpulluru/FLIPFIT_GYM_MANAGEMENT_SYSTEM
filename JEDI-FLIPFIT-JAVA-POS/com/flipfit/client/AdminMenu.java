@@ -12,6 +12,15 @@ import com.flipfit.dao.FlipFitUserDAOImpl;
 import com.flipfit.dao.collection.FlipFitData;
 
 
+
+
+/*
+ *@Author : "Dhara Periwal"
+ *@ClassName: "AdminMenu"
+ *@Exceptions: "java.lang.Exception"
+ *@Version : "1.0"
+ *@See : "com.flipfit.bean.FlipFitUser, com.flipfit.client.AdminMenu, com.flipfit.client.CustomerMenu, com.flipfit.client.GymOwnerMenu"
+ */
 public class AdminMenu {
     private final AdminService adminService = new AdminService();
     private final FlipFitUserDAOImpl userDAO = new FlipFitUserDAOImpl();

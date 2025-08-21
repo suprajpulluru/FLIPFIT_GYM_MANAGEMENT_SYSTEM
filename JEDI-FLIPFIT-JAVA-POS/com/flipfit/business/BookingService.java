@@ -10,6 +10,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+
+/*
+ *@Author : "Asmitha Gangoni"
+ *@ClassName: "BookingService"
+ *@Exceptions: "N/A"
+ *@Version : "1.0"
+ *@See : "com.flipfit.bean.BookingService"
+ */
 public class BookingService implements BookingServiceInterface{
 
     private final FlipFitCustomerDAO customerDAO = new FlipFitCustomerDAOImpl();

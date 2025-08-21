@@ -11,7 +11,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
-
+/*
+ *@Author : "Asmitha Gangoni"
+ *@ClassName: "FlipFitCustomerDAOImpl"
+ *@Exceptions: "N/A"
+ *@Version : "1.0"
+ *@See : "com.flipfit.bean.FlipFitGym, com.flipfit.bean.FlipFitGymOwner, java.util.List"
+ */
 public class FlipFitCustomerDAOImpl implements FlipFitCustomerDAO {
 
     @Override

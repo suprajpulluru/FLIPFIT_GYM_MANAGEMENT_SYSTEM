@@ -1,7 +1,13 @@
 package com.flipfit.bean;
 
 import java.util.Date;
-
+/*
+ *@Author : "Asmitha Gangoni"
+ *@ClassName: "FlipFitBooking"
+ *@Exceptions: "N/A"
+ *@Version : "1.0"
+ *@See : "java.util.Date"
+ */
 public class FlipFitBooking {
     private String bookingId;
     private String slotId;
