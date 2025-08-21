@@ -58,15 +58,14 @@ public class FlipFitData {
         userMap.put(owner2.getEmail(), owner2);
 
         // Hardcoded Gyms
-        gymMap.put("GYM001", new FlipFitGym("GYM001", "Flex Fit Gym", "owner1@gmail.com", "123 Main St, Anytown", 5, 10, true)); // Verified
-        gymMap.put("GYM002", new FlipFitGym("GYM002", "Hardcore Fitness", "owner1@gmail.com", "456 Side Ave, Anytown", 4, 15, true)); // Verified
-        gymMap.put("GYM003", new FlipFitGym("GYM003", "Quick Flex", "owner2@gmail.com", "789 Broadway, Anytown", 6, 8, false)); // Pending verification
+        gymMap.put("GYM001", new FlipFitGym("GYM001", "Flex Fit Gym", "owner1@gmail.com", "MainSttown", 5, 10, true)); // Verified
+        gymMap.put("GYM002", new FlipFitGym("GYM002", "Hardcore Fitness", "owner1@gmail.com", "SideAvetown", 4, 15, true)); // Verified
+        gymMap.put("GYM003", new FlipFitGym("GYM003", "Quick Flex", "owner2@gmail.com", "Broadwaytown", 6, 8, false)); // Pending verification
 
-        // Hardcoded Slots
-        slotMap.put("SLOT001", new FlipFitSlots("SLOT001", "GYM001", "08:00", "09:00", "Trainer A", 10, 0));
-        slotMap.put("SLOT002", new FlipFitSlots("SLOT002", "GYM001", "09:00", "10:00", "Trainer A", 10, 2));
-        slotMap.put("SLOT003", new FlipFitSlots("SLOT003", "GYM002", "18:00", "19:00", "Trainer B", 15, 15)); // This slot is full
-        slotMap.put("SLOT004", new FlipFitSlots("SLOT004", "GYM003", "07:00", "08:00", "Trainer C", 8, 0)); // Gym not verified
+        slotMap.put("SLOT001", new FlipFitSlots("SLOT001", "GYM001", "08:00", "09:00", "Trainer A", 10, 0, new Date()));
+        slotMap.put("SLOT002", new FlipFitSlots("SLOT002", "GYM001", "09:00", "10:00", "Trainer A", 10, 2, new Date()));
+        slotMap.put("SLOT003", new FlipFitSlots("SLOT003", "GYM002", "18:00", "19:00", "Trainer B", 15, 15, new Date())); // This slot is full
+        slotMap.put("SLOT004", new FlipFitSlots("SLOT004", "GYM003", "07:00", "08:00", "Trainer C", 8, 0, new Date())); // Gym not verified
 
         // Hardcoded Bookings
         bookingMap.put("B001", new FlipFitBooking("B001", "SLOT001", "GYM001", "confirmed", new Date(), "customer1@gmail.com"));

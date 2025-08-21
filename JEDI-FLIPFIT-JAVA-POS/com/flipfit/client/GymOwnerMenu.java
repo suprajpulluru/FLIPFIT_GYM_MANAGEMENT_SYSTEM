@@ -1,4 +1,5 @@
 package com.flipfit.client;
+import java.util.Date;
 
 import com.flipfit.bean.FlipFitGym;
 import com.flipfit.bean.FlipFitGymOwner;
@@ -208,7 +209,7 @@ public class GymOwnerMenu {
 
             // UPDATED constructor call to match new bean
             // Assumes a new slot has 0 seats booked initially
-            FlipFitSlots newSlot = new FlipFitSlots(null, gymId, startTime, endTime, trainer, numOfSeats, 0);
+            FlipFitSlots newSlot = new FlipFitSlots(null, gymId, startTime, endTime, trainer, numOfSeats, 0, new Date());
             gymOwnerService.addSlot(newSlot);
 
         } catch (NumberFormatException e) {

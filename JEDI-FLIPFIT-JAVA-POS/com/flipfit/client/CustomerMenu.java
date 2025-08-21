@@ -117,7 +117,8 @@ public class CustomerMenu {
         List<FlipFitGym> gyms = new ArrayList<>();
         if (choice == 1) {
             System.out.print("Enter your address: ");
-            gyms = customerBusiness.getGymsByCity(sc.next());
+            String address = sc.next();
+            gyms = customerBusiness.getGymsByCity(address);
         } else if (choice == 2) {
             System.out.print("Enter Date (yyyy-MM-dd): ");
             String dateStr = sc.next();
