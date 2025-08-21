@@ -1,10 +1,21 @@
 package com.flipfit.utils;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
+/*
+ *@Author : "Gaurav"
+ *@ClassName: "DbConnection"
+ *@Exceptions: "java.sql.SQLException, java.io.FileNotFoundException, java.io.IOException"
+ *@Version : "1.0"
+ *@See : "java.sql.Connection, java.sql.DriverManager, java.util.Properties"
+ */
 public class DbConnection {
     public static Connection connection = null;
 
@@ -26,3 +37,7 @@ public class DbConnection {
         }
     }
 }
+
+
+
+
