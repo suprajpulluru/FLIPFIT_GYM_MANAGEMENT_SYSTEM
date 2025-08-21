@@ -12,7 +12,7 @@ import java.util.List;
  * Service class for Gym Owner operations.
  * This class handles the business logic by interacting with the DAO layer.
  */
-public class GymOwnerService {
+public class GymOwnerService implements GymOwnerServiceInterface {
 
     // Using the interface for declaration, but instantiating the implementation
     private final FlipFitGymOwnerDAO gymOwnerDAO = new FlipFitGymOwnerDAOImpl();

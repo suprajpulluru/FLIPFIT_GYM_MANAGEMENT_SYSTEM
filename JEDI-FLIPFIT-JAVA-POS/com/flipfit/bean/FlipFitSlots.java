@@ -15,7 +15,7 @@ public class FlipFitSlots {
         super();
     }
 
-    public FlipFitSlots(String slotId, String gymId, String startTime, String endTime, String trainer, int numOfSeats, int numOfSeatsBooked) {
+    public FlipFitSlots(String slotId, String gymId, String startTime, String endTime, String trainer, int numOfSeats, int numOfSeatsBooked, Date date) {
         this.slotId = slotId;
         this.gymId = gymId;
         this.startTime = startTime;
@@ -23,6 +23,7 @@ public class FlipFitSlots {
         this.trainer = trainer;
         this.numOfSeats = numOfSeats;
         this.numOfSeatsBooked = numOfSeatsBooked;
+        this.date = date;
     }
 
     public String getSlotId() {

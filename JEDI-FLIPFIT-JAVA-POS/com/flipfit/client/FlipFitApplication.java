@@ -38,7 +38,7 @@ public class FlipFitApplication {
 
 
         if(roleChosen) {
-            System.out.println("Enter email: ");
+            System.out.println("Enter username: ");
             String email = sc.next();
             System.out.println("Enter password: ");
             String password = sc.next();
@@ -96,7 +96,7 @@ public class FlipFitApplication {
                     break;
                 case 3:
                     GymOwnerMenu gymOwner = new GymOwnerMenu();
-//                    gymOwner.registerGymOwner();
+                    gymOwner.registerGymOwner();
                     login();
                     retry = false;
                     break;

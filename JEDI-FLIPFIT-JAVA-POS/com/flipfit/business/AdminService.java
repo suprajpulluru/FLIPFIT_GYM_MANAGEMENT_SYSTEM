@@ -5,7 +5,7 @@ import com.flipfit.dao.FlipFitAdminDAOImpl;
 import com.flipfit.bean.FlipFitGym;
 import com.flipfit.bean.FlipFitGymOwner;
 
-public class AdminService {
+public class AdminService implements AdminServiceInterface{
     FlipFitAdminDAOImpl adminDAO = new FlipFitAdminDAOImpl();
 
     public List<FlipFitGymOwner> getGymOwners() {

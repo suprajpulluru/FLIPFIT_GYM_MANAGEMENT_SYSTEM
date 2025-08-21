@@ -21,6 +21,11 @@ public class FlipFitCustomerDAOImpl implements FlipFitCustomerDAO {
 
     @Override
     public List<FlipFitSlots> fetchSlotsByGym(String gymId) {
+        System.out.println(gymId);
+        for(FlipFitSlots slot : FlipFitData.slotMap.values()){
+            System.out.println(slot.getGymId());
+            System.out.println(FlipFitData.slotMap.values().stream());
+        }
         return FlipFitData.slotMap.values().stream()
                 .filter(slot -> slot.getGymId().equals(gymId))
                 .collect(Collectors.toList());

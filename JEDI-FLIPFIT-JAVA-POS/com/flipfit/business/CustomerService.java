@@ -13,7 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class CustomerService {
+public class CustomerService implements CustomerServiceInterface {
     List<FlipFitCustomer> customers = new ArrayList<>();
     List<FlipFitBooking> bookings = new ArrayList<>();
 
