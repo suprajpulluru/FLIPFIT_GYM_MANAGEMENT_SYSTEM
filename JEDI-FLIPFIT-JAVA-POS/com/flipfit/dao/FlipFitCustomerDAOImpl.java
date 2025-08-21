@@ -19,6 +19,13 @@ import java.sql.SQLException;
 
 import static com.flipfit.dao.FlipFitGymOwnerDAOImpl.printSQLException;
 
+/*
+ *@Author : "Asmitha Gangoni"
+ *@ClassName: "FlipFitCustomerDAOImpl"
+ *@Exceptions: "N/A"
+ *@Version : "1.0"
+ *@See : "com.flipfit.bean.FlipFitGym, com.flipfit.bean.FlipFitGymOwner, java.util.List"
+ */
 public class FlipFitCustomerDAOImpl implements FlipFitCustomerDAO {
 
     @Override
@@ -248,7 +255,7 @@ public class FlipFitCustomerDAOImpl implements FlipFitCustomerDAO {
                 printSQLException(ex);
             }
         }
-        return success;
+        return false;
     }
 
     @Override
@@ -378,7 +385,6 @@ public class FlipFitCustomerDAOImpl implements FlipFitCustomerDAO {
         }
         return gyms;
     }
-
 
     @Override
     public void processPayment(FlipFitPayment payment) {

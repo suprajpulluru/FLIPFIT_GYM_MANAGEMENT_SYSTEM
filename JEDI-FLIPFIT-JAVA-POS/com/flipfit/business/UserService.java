@@ -6,6 +6,14 @@ import com.flipfit.bean.FlipFitUser;
 import com.flipfit.dao.FlipFitGymOwnerDAOImpl;
 import com.flipfit.dao.FlipFitUserDAOImpl;
 
+
+/*
+ *@Author : "Asmitha gangoni"
+ *@ClassName: "UserService"
+ *@Exceptions: "N/A"
+ *@Version : "1.0"
+ *@See : "com.flipfit.bean.UserService"
+ */
 public class UserService implements UserServiceInterface {
 
     FlipFitGymOwnerDAOImpl gymOwnerDao = new FlipFitGymOwnerDAOImpl();

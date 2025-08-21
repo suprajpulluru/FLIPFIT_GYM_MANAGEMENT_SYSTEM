@@ -1,5 +1,11 @@
 package com.flipfit.bean;
-
+/*
+ *@Author : "Supraj Pulluru"
+ *@ClassName: "FlipFitNotification"
+ *@Exceptions: "N/A"
+ *@Version : "1.0"
+ *@See : "java.util.Date"
+ */
 public class FlipFitNotification {
     private String id;
     private String description;

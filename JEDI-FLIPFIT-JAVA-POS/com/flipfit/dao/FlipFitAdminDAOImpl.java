@@ -1,4 +1,5 @@
 package com.flipfit.dao;
+
 import com.flipfit.bean.*;
 import com.flipfit.utils.DbConnection;
 
@@ -8,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /*
  *@Author : "Harshita Kanwar"

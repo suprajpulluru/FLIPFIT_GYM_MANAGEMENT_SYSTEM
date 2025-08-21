@@ -1,5 +1,11 @@
 package com.flipfit.business;
-
+/*
+ *@Author : "Asmitha Gangoni"
+ *@ClassName: "AdminServiceInterface"
+ *@Exceptions: "N/A"
+ *@Version : "1.0"
+ *@See : "com.flipfit.bean.AdminServiceInterface"
+ */
 import com.flipfit.bean.*;
 import java.util.*;
 

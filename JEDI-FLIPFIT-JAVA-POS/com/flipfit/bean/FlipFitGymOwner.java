@@ -1,5 +1,11 @@
 package com.flipfit.bean;
-
+/*
+ *@Author : "Harshita Kanwar"
+ *@ClassName: "FlipFitGymOwner"
+ *@Exceptions: "N/A"
+ *@Version : "1.0"
+ *@See : "java.util.Date"
+ */
 public class FlipFitGymOwner extends FlipFitUser {
     private String name;
     private String phoneNumber;

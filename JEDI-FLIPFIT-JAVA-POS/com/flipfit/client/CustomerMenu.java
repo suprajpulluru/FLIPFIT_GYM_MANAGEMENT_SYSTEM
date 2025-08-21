@@ -8,6 +8,14 @@ import com.flipfit.business.CustomerService;
 import com.flipfit.business.UserService;
 import com.flipfit.utils.IdGenerator;
 
+
+/*
+ *@Author : "Harshita Kanwar"
+ *@ClassName: "CustomerMenu"
+ *@Exceptions: "java.lang.Exception"
+ *@Version : "1.0"
+ *@See : "com.flipfit.bean.FlipFitCustomer, com.flipfit.client.AdminMenu, com.flipfit.client.CustomerMenu, com.flipfit.client.GymOwnerMenu"
+ */
 public class CustomerMenu {
 
     FlipFitCustomer customer = new FlipFitCustomer();

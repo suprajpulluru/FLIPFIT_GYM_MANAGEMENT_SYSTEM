@@ -6,6 +6,14 @@ import com.flipfit.business.UserService;
 import java.text.ParseException;
 import java.util.Scanner;
 
+
+/*
+ *@Author : "Gaurav"
+ *@ClassName: "FlipFitApplication"
+ *@Exceptions: "java.lang.Exception"
+ *@Version : "1.0"
+ *@See : "com.flipfit.bean.FlipFitCustomer, com.flipfit.client.AdminMenu, com.flipfit.client.CustomerMenu, com.flipfit.client.GymOwnerMenu"
+ */
 public class FlipFitApplication {
 
     public static void login() throws ParseException {

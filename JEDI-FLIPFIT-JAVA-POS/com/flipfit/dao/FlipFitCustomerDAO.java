@@ -6,6 +6,14 @@ import java.util.List;
 import com.flipfit.bean.*;
 //import com.flipfit.exception.NoSlotsFoundException;
 
+
+/*
+ *@Author : "Akanksha"
+ *@ClassName: "FlipFitCustomerDAO"
+ *@Exceptions: "N/A"
+ *@Version : "1.0"
+ *@See : "com.flipfit.bean.FlipFitGym, com.flipfit.bean.FlipFitGymOwner, java.util.List"
+ */
 public interface FlipFitCustomerDAO {
     public List<FlipFitGym> fetchGymList();
 

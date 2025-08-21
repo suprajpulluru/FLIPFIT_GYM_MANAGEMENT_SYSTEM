@@ -1,7 +1,13 @@
 package com.flipfit.bean;
 
 import java.util.Date;
-
+/*
+ *@Author : "Supraj Pulluru"
+ *@ClassName: "FlipFitRegistration"
+ *@Exceptions: "N/A"
+ *@Version : "1.0"
+ *@See : "java.util.Date"
+ */
 public class FlipFitRegistration {
     public String RegistrationId;
     public Date RegistrationDate;

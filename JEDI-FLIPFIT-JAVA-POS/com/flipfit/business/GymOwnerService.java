@@ -8,6 +8,15 @@ import com.flipfit.dao.FlipFitGymOwnerDAOImpl;
 
 import java.util.List;
 
+
+
+/*
+ *@Author : "Harshita Kanwar"
+ *@ClassName: "GymOwnerService"
+ *@Exceptions: "N/A"
+ *@Version : "1.0"
+ *@See : "com.flipfit.bean.GymOwnerService"
+ */
 /**
  * Service class for Gym Owner operations.
  * This class handles the business logic by interacting with the DAO layer.

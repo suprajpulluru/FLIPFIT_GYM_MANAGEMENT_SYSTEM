@@ -8,6 +8,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+
+/*
+ *@Author : "Gaurav"
+ *@ClassName: "BookingServiceInterface"
+ *@Exceptions: "N/A"
+ *@Version : "1.0"
+ *@See : "com.flipfit.bean.BookingServiceInterface"
+ */
 public interface BookingServiceInterface {
     public List<FlipFitGym> getAvailableGyms();
 

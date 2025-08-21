@@ -1,5 +1,11 @@
 package com.flipfit.bean;
-
+/*
+ *@Author : "Supraj Pulluru"
+ *@ClassName: "FlipFitPayment"
+ *@Exceptions: "N/A"
+ *@Version : "1.0"
+ *@See : "java.util.Date"
+ */
 public class FlipFitPayment {
     private String transactionId;
     private String bookingId;

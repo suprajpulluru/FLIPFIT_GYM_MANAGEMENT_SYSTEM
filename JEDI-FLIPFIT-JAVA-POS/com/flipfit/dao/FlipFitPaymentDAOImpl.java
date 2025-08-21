@@ -1,51 +1,51 @@
 package com.flipfit.dao;
 
-import com.flipfit.bean.Payment;
+import com.flipfit.bean.FlipFitPayment;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
-
+/*
+ *@Author : "Dhara Periwal"
+ *@ClassName: "FlipFitPaymentDAOImpl"
+ *@Exceptions: "N/A"
+ *@Version : "1.0"
+ *@See : "com.flipfit.bean.FlipFitGym, com.flipfit.bean.FlipFitGymOwner, java.util.List"
+ */
 public class FlipFitPaymentDAOImpl implements FlipFitPaymentDAO {
 
-    private static Map<String, Payment> paymentMap = new ConcurrentHashMap<>();
+    // Using a HashMap to simulate a database table for payments
+    private static final Map<String, FlipFitPayment> paymentTable = new HashMap<>();
 
     @Override
-    public void addPayment(Payment payment) {
-        paymentMap.put(payment.getTransactionId(), payment);
-        System.out.println("Payment with transaction ID " + payment.getTransactionId() + " added successfully.");
+    public void addPayment(FlipFitPayment payment) {
+        if (payment != null && payment.getTransactionId() != null) {
+            paymentTable.put(payment.getTransactionId(), payment);
+        }
     }
 
     @Override
-    public Payment getPaymentByTransactionId(String transactionId) {
-        return paymentMap.get(transactionId);
+    public FlipFitPayment getPaymentByTransactionId(String transactionId) {
+        return paymentTable.get(transactionId);
     }
 
     @Override
     public boolean updatePaymentStatus(String transactionId, String newStatus) {
-        Payment payment = paymentMap.get(transactionId);
+        FlipFitPayment payment = paymentTable.get(transactionId);
         if (payment != null) {
             payment.setPaymentStatus(newStatus);
-            System.out.println("Payment status for " + transactionId + " updated to " + newStatus);
             return true;
-        } else {
-            System.out.println("Payment with transaction ID " + transactionId + " not found.");
-            return false;
         }
+        return false;
     }
 
     @Override
     public void deletePayment(String transactionId) {
-        if (paymentMap.remove(transactionId) != null) {
-            System.out.println("Payment with transaction ID " + transactionId + " deleted successfully.");
-        } else {
-            System.out.println("Payment with transaction ID " + transactionId + " not found.");
-        }
+        paymentTable.remove(transactionId);
     }
 
     @Override
-    public List<Payment> getAllPayments() {
-        return new ArrayList<>(paymentMap.values());
+    public List<FlipFitPayment> getAllPayments() {
+        return new ArrayList<>(paymentTable.values());
     }
 }
