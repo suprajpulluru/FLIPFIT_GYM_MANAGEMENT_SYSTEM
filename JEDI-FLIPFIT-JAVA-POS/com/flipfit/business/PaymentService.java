@@ -6,7 +6,7 @@ import com.flipfit.bean.Payment;
 
 import java.util.List;
 
-public class PaymentService {
+public class PaymentService implements PaymentServiceInterface {
 
     private FlipFitPaymentDAO FlipFitPaymentDAO = new FlipFitPaymentDAOImpl();
 

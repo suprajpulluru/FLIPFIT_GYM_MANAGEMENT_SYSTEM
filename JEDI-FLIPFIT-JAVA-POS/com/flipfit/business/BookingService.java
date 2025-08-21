@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-public class BookingService {
+public class BookingService implements BookingServiceInterface{
 
     private final FlipFitCustomerDAO customerDAO = new FlipFitCustomerDAOImpl();
 

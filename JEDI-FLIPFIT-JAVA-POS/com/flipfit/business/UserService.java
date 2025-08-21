@@ -6,7 +6,7 @@ import com.flipfit.bean.FlipFitUser;
 import com.flipfit.dao.FlipFitGymOwnerDAOImpl;
 import com.flipfit.dao.FlipFitUserDAOImpl;
 
-public class UserService {
+public class UserService implements UserServiceInterface {
 
     FlipFitGymOwnerDAOImpl gymOwnerDao = new FlipFitGymOwnerDAOImpl();
     FlipFitUserDAOImpl userDao = new FlipFitUserDAOImpl();
