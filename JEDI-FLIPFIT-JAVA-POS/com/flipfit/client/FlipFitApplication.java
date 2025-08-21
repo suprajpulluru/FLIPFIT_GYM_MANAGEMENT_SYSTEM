@@ -1,5 +1,6 @@
 package com.flipfit.client;
 
+import com.flipfit.bean.FlipFitUser;
 import com.flipfit.business.UserService;
 
 import java.text.ParseException;
@@ -38,28 +39,29 @@ public class FlipFitApplication {
 
         if(roleChosen) {
             System.out.println("Enter username: ");
-            String username = sc.next();
+            String email = sc.next();
             System.out.println("Enter password: ");
             String password = sc.next();
 
-//            UserService userService = new UserService();
-//            userService.loginUser(username, password, role);
-//            above lines will take care of logging the user in
-            System.out.println("logged in successfully!");
-            AdminMenu adminMenu;
-            CustomerMenu customerMenu;
-            GymOwnerMenu gymOwnerMenu;
-            if (role == "Admin") {
-                adminMenu = new AdminMenu();
-                adminMenu.showAdminMenu();
-            }
-            else if (role == "FlipFitCustomer") {
-                customerMenu = new CustomerMenu();
-                customerMenu.customerMenu(username);
-            }
-            else{
-                gymOwnerMenu = new GymOwnerMenu();
-                gymOwnerMenu.showMenu(username);
+
+            FlipFitUser user = new FlipFitUser(email, password, role);
+            UserService userBusiness = new UserService();
+
+            if (userBusiness.authenticateUser(user)) {
+                System.out.println("\nWelcome " + email + "! You are logged in.");
+                if (role.equalsIgnoreCase("Admin")) {
+                    AdminMenu admin = new AdminMenu();
+                    admin.showAdminMenu();
+                } else if (role.equalsIgnoreCase("FlipFitCustomer")) {
+                    CustomerMenu customer = new CustomerMenu();
+                    customer.customerMenu(email);
+                } else if (role.equalsIgnoreCase("GymOwner")) {
+                    GymOwnerMenu gymOwner = new GymOwnerMenu();
+                    gymOwner.showMenu(email);
+                }
+            } else {
+                System.out.println("Login failed. Please check your credentials and role.");
+                login();
             }
         }
 

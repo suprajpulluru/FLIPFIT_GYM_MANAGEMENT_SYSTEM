@@ -37,7 +37,7 @@ public class FlipFitData {
 
         // Hardcoded Users
         userMap.put("admin@flipfit.com", new FlipFitUser("admin@flipfit.com", "admin123", "Admin"));
-//        userMap.put("customer@flipfit.com", new FlipFitUser("customer@flipfit.com", "customer123", "Customer"));
+        userMap.put("customer@flipfit.com", new FlipFitUser("customer@flipfit.com", "customer123", "FlipFitCustomer"));
 //        userMap.put("gymowner@flipfit.com", new FlipFitUser("gymowner@flipfit.com", "gymownern123", "Owner"));
 
         // Hardcoded Customers - Now using the updated constructor
