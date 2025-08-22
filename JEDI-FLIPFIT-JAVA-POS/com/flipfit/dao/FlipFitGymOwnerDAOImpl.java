@@ -97,7 +97,7 @@ public class FlipFitGymOwnerDAOImpl implements FlipFitGymOwnerDAO {
     public FlipFitGym getGym(String gymId) {
         Connection connection = null;
         FlipFitGym gym = new FlipFitGym();
-        String query = "select gymId, gymName, ownerEmail, address, slotCount, seatsPerSlotCount, isVerified from gym where gymId = ?";
+        String query = "select gymId, gymName, ownerEmail, address, slotCount, isVerified from gym where gymId = ?";
         try {connection = DbConnection.getConnection();
 
             // Step 2:Create a statement using connection object
@@ -114,7 +114,6 @@ public class FlipFitGymOwnerDAOImpl implements FlipFitGymOwnerDAO {
                 gym.setOwnerEmail(rs.getString("ownerEmail"));
                 gym.setAddress(rs.getString("address"));
                 gym.setSlotCount(rs.getInt("slotCount"));
-                gym.setSeatsPerSlotCount(rs.getInt("seatsPerSlotCount"));
                 gym.setVerified(rs.getBoolean("isVerified"));
 
 //	                System.out.println(id + "," + name + "," + email + "," + country + "," + password);
@@ -129,7 +128,7 @@ public class FlipFitGymOwnerDAOImpl implements FlipFitGymOwnerDAO {
     public void addGym(FlipFitGym gymDetails) {
         Connection connection = null;
         String INSERT_GYM_SQL = "INSERT INTO gym"
-                + "  (gymId, gymName, ownerEmail, address, slotCount, seatsPerSlotCount, isVerified) VALUES "
+                + "  (gymId, gymName, ownerEmail, address, isVerified) VALUES "
                 + " (?, ?, ?, ?, ?, ?, ?);";
 //        System.out.println(INSERT_GYM_SQL);
         // Step 1: Establishing a Connection
@@ -141,9 +140,7 @@ public class FlipFitGymOwnerDAOImpl implements FlipFitGymOwnerDAO {
             preparedStatement.setString(2, gymDetails.getGymName());
             preparedStatement.setString(3, gymDetails.getOwnerEmail());
             preparedStatement.setString(4, gymDetails.getAddress());
-            preparedStatement.setInt(5, gymDetails.getSlotCount());
-            preparedStatement.setInt(6, gymDetails.getSeatsPerSlotCount());
-            preparedStatement.setBoolean(7, gymDetails.isVerified());
+            preparedStatement.setBoolean(5, gymDetails.isVerified());
 
 //            System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
@@ -157,7 +154,7 @@ public class FlipFitGymOwnerDAOImpl implements FlipFitGymOwnerDAO {
     public void editGym(FlipFitGym gymDetails) {
         Connection connection = null;
         String INSERT_GYM_SQL = "update gym"
-                + "  set gymId = ?, gymName = ?, ownerEmail = ?, address = ?, slotCount = ?, seatsPerSlotCount = ?, isVerified = ? where gymId = ?;";
+                + "  set gymId = ?, gymName = ?, ownerEmail = ?, address = ?, slotCount = ?, isVerified = ? where gymId = ?;";
 //        System.out.println(INSERT_GYM_SQL);
         // Step 1: Establishing a Connection
         try {connection = DbConnection.getConnection();
@@ -169,9 +166,8 @@ public class FlipFitGymOwnerDAOImpl implements FlipFitGymOwnerDAO {
             preparedStatement.setString(3, gymDetails.getOwnerEmail());
             preparedStatement.setString(4, gymDetails.getAddress());
             preparedStatement.setInt(5, gymDetails.getSlotCount());
-            preparedStatement.setInt(6, gymDetails.getSeatsPerSlotCount());
-            preparedStatement.setBoolean(7, gymDetails.isVerified());
-            preparedStatement.setString(8, gymDetails.getGymId());
+            preparedStatement.setBoolean(6, gymDetails.isVerified());
+            preparedStatement.setString(7, gymDetails.getGymId());
 
 //            System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
@@ -185,7 +181,7 @@ public class FlipFitGymOwnerDAOImpl implements FlipFitGymOwnerDAO {
     public List<FlipFitGym> getGymsOfGymOwner(String gymOwnerId) {
         Connection connection = null;
         List<FlipFitGym> gyms = new ArrayList<FlipFitGym>();
-        String query = "select gymId, gymName, ownerEmail, address, slotCount, seatsPerSlotCount, isVerified from gym where ownerEmail =  ?";
+        String query = "select gymId, gymName, ownerEmail, address, slotCount, isVerified from gym where ownerEmail =  ?";
         try {connection = DbConnection.getConnection();
 
             // Step 2:Create a statement using connection object
@@ -203,7 +199,6 @@ public class FlipFitGymOwnerDAOImpl implements FlipFitGymOwnerDAO {
                 gym.setOwnerEmail(rs.getString("ownerEmail"));
                 gym.setAddress(rs.getString("address"));
                 gym.setSlotCount(rs.getInt("slotCount"));
-                gym.setSeatsPerSlotCount(rs.getInt("seatsPerSlotCount"));
                 gym.setVerified(rs.getBoolean("isVerified"));
                 gyms.add(gym);
 //	                System.out.println(id + "," + name + "," + email + "," + country + "," + password);

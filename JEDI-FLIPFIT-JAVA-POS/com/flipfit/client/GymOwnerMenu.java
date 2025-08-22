@@ -176,14 +176,10 @@ public class GymOwnerMenu {
         String gymName = scanner.nextLine();
         System.out.print("Enter Gym Address: ");
         String gymAddress = scanner.nextLine();
-        System.out.print("Enter Number of Slots: ");
-        int slotCount = scanner.nextInt();
-        System.out.print("Enter Number of Seats Per Slot: ");
-        int seatsPerSlotCount = scanner.nextInt();
 
         String gymId = "G-" + UUID.randomUUID().toString().substring(0, 4).toUpperCase();
 
-        FlipFitGym newGym = new FlipFitGym(gymId, gymName, ownerEmail, gymAddress, slotCount, seatsPerSlotCount, false);
+        FlipFitGym newGym = new FlipFitGym(gymId, gymName, ownerEmail, gymAddress,0, false);
         gymOwnerService.addGym(newGym);
     }
 

@@ -30,7 +30,7 @@ public class FlipFitCustomerDAOImpl implements FlipFitCustomerDAO {
     public List<FlipFitGym> fetchGymList() {
         Connection connection = null;
         List<FlipFitGym> gyms = new ArrayList<FlipFitGym>();
-        String query = "select gymId, gymName, ownerEmail, address, slotCount, seatsPerSlotCount, isVerified from gym";
+        String query = "select gymId, gymName, ownerEmail, address, slotCount, isVerified from gym";
         try {connection = DbConnection.getConnection();
             // Step 2:Create a statement using connection object
             PreparedStatement statement = connection.prepareStatement(query);
@@ -47,7 +47,6 @@ public class FlipFitCustomerDAOImpl implements FlipFitCustomerDAO {
                 gym.setOwnerEmail(rs.getString("ownerEmail"));
                 gym.setAddress(rs.getString("address"));
                 gym.setSlotCount(rs.getInt("slotCount"));
-                gym.setSeatsPerSlotCount(rs.getInt("seatsPerSlotCount"));
                 gym.setVerified(rs.getBoolean("isVerified"));
                 gyms.add(gym);
 //	                System.out.println(id + "," + name + "," + email + "," + country + "," + password);

@@ -12,20 +12,18 @@ public class FlipFitGym {
     private String ownerEmail;
     private String address;
     private int slotCount;
-    private int seatsPerSlotCount;
     private boolean isVerified;
 
     public FlipFitGym() {
 
     }
 
-    public FlipFitGym(String gymId, String gymName, String ownerEmail, String address, int slotCount, int seatsPerSlotCount, boolean isVerified) {
+    public FlipFitGym(String gymId, String gymName, String ownerEmail, String address, int slotCount, boolean isVerified) {
         this.gymId = gymId;
         this.gymName = gymName;
         this.ownerEmail = ownerEmail;
         this.address = address;
         this.slotCount = slotCount;
-        this.seatsPerSlotCount = seatsPerSlotCount;
         this.isVerified = isVerified;
     }
 
@@ -69,14 +67,6 @@ public class FlipFitGym {
         this.slotCount = slotCount;
     }
 
-    public int getSeatsPerSlotCount() {
-        return seatsPerSlotCount;
-    }
-
-    public void setSeatsPerSlotCount(int seatsPerSlotCount) {
-        this.seatsPerSlotCount = seatsPerSlotCount;
-    }
-
     public boolean isVerified() {
         return isVerified;
     }
@@ -92,7 +82,6 @@ public class FlipFitGym {
                 "\nGym Owner Email : " + this.getOwnerEmail() +
                 "\nGym Address : " + this.getAddress() +
                 "\nGym Slotcount : " + this.getSlotCount() +
-                "\nSeat per slot count : " + this.getSeatsPerSlotCount() +
                 "\nVerification : " + (this.isVerified() ? "Yes" : "No");
         return s;
 
