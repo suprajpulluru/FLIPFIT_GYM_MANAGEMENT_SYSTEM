@@ -318,14 +318,7 @@ public class FlipFitCustomerDAOImpl implements FlipFitCustomerDAO {
             connection = DbConnection.getConnection();
             connection.setAutoCommit(false); // Start transaction
 
-            // 1. Update the 'user' table
-            String updateUserSQL = "UPDATE user SET password = ? WHERE email = ?";
-            PreparedStatement updateUserStmt = connection.prepareStatement(updateUserSQL);
-            updateUserStmt.setString(1, customer.getPassword());
-            updateUserStmt.setString(2, customer.getEmail());
-            updateUserStmt.executeUpdate();
-
-            // 2. Update the 'customer' table
+            // 1. Update the 'customer' table
             String updateCustomerSQL = "UPDATE customer SET name = ?, phoneNumber = ?, age = ?, address = ? WHERE email = ?";
             PreparedStatement updateCustomerStmt = connection.prepareStatement(updateCustomerSQL);
             updateCustomerStmt.setString(1, customer.getName());

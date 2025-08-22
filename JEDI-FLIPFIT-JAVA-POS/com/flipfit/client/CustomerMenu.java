@@ -164,8 +164,6 @@ public class CustomerMenu {
         FlipFitCustomer customerToUpdate = new FlipFitCustomer();
         customerToUpdate.setEmail(email); // Set the email of the logged-in user
 
-        System.out.print("Enter New Password: ");
-        customerToUpdate.setPassword(sc.next());
         System.out.print("Enter New Name: ");
         customerToUpdate.setName(sc.next());
         System.out.print("Enter New Phone Number: ");
@@ -221,7 +219,7 @@ public class CustomerMenu {
         System.out.printf("| %-20s | %-15s | %-15s |%n", "BOOKING ID", "GYM ID", "SLOT ID");
         System.out.println("-------------------------------------------------------------------------------------");
         for (FlipFitBooking booking : bookings) {
-            System.out.printf("| %-20s | %-15s | %-15s | %-15s |%n",
+            System.out.printf("| %-20s | %-15s | %-15s |%n",
                     booking.getBookingId(),
                     booking.getGymId(),
                     booking.getSlotId()
@@ -265,7 +263,7 @@ public class CustomerMenu {
                         System.out.printf("| %-20s | %-15s | %-15s |%n", "BOOKING ID", "GYM ID", "SLOT ID");
                         System.out.println("-------------------------------------------------------------------------------------");
                         for (FlipFitBooking booking : bookings) {
-                            System.out.printf("| %-20s | %-15s | %-15s | %-15s |%n",
+                            System.out.printf("| %-20s | %-15s | %-15s |%n",
                                     booking.getBookingId(),
                                     booking.getGymId(),
                                     booking.getSlotId()
