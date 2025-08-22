@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 //package com.flipfit.dao.collection;
+=======
+package com.flipfit.dao.collection;//package com.flipfit.dao.collection;
+>>>>>>> 8d1cf5fe5cb01a7ba11cbd713f4a504d3432fb7f
 //
 //import com.flipfit.bean.*;
 //
