@@ -6,6 +6,7 @@ package com.flipfit.bean;
  *@Version : "1.0"
  *@See : "java.util.Date"
  */
+
 public class FlipFitRole {
     public int RoleId;
     public String RoleName;

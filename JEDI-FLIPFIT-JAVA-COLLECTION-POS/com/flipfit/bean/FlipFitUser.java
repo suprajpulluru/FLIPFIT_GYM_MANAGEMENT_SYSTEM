@@ -6,6 +6,7 @@ package com.flipfit.bean;
  *@Version : "1.0"
  *@See : "java.util.Date"
  */
+
 public class FlipFitUser {
     private String email;
     private String password;

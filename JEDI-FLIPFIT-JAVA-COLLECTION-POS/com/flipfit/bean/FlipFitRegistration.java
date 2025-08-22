@@ -8,6 +8,7 @@ import java.util.Date;
  *@Version : "1.0"
  *@See : "java.util.Date"
  */
+
 public class FlipFitRegistration {
     public String RegistrationId;
     public Date RegistrationDate;

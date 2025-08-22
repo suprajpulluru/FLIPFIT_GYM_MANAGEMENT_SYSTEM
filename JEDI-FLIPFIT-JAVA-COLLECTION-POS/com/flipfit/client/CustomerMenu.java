@@ -7,8 +7,6 @@ import com.flipfit.bean.*;
 import com.flipfit.business.CustomerService;
 import com.flipfit.business.UserService;
 import com.flipfit.utils.IdGenerator;
-
-
 /*
  *@Author : "Harshita Kanwar"
  *@ClassName: "CustomerMenu"

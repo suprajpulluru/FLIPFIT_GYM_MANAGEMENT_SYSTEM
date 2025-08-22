@@ -104,7 +104,6 @@ public class FlipFitApplication {
                     break;
                 case 3:
                     GymOwnerMenu gymOwner = new GymOwnerMenu();
-                    gymOwner.registerGymOwner();
                     login();
                     retry = false;
                     break;

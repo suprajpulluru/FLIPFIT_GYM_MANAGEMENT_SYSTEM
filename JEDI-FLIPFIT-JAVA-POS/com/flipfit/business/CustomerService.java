@@ -8,8 +8,9 @@ import com.flipfit.bean.FlipFitSlots;
 import com.flipfit.dao.FlipFitCustomerDAOImpl;
 import com.flipfit.utils.*;
 
-import java.text.ParseException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 /*
  *@Author : "Gaurav"
@@ -87,7 +88,7 @@ public class CustomerService implements CustomerServiceInterface {
             return "You have already booked this slot.";
         }
 
-        String bookingId = IdGenerator.generateId("Booking");
+        String bookingId = "B-" + UUID.randomUUID().toString().substring(0, 4).toUpperCase();
         return customerDAO.bookSlots(bookingId, slotId, gymId, "Confirmed", email);
     }
 

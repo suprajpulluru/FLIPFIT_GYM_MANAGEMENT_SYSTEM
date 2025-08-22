@@ -9,6 +9,15 @@ import com.flipfit.dao.FlipFitUserDAOImpl;
 import com.flipfit.utils.IdGenerator;
 
 
+import com.flipfit.dao.FlipFitUserDAOImpl;
+
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.UUID;
+
+
 /*
  *@Author : "Harshita Kanwar"
  *@ClassName: "CustomerMenu"
@@ -126,7 +135,7 @@ public class CustomerMenu {
             // --- 5. PAYMENT PORTAL ---
             FlipFitPayment payment = new FlipFitPayment();
             payment.setBookingId(newBookingId);
-            payment.setTransactionId(IdGenerator.generateId("Trans"));
+            payment.setTransactionId("T-" + UUID.randomUUID().toString().substring(0, 4).toUpperCase());
             payment.setPaymentStatus("Success");
 
             System.out.println("--- Payment Portal ---");
@@ -164,6 +173,8 @@ public class CustomerMenu {
         FlipFitCustomer customerToUpdate = new FlipFitCustomer();
         customerToUpdate.setEmail(email); // Set the email of the logged-in user
 
+        System.out.print("Enter New Password: ");
+        customerToUpdate.setPassword(sc.next());
         System.out.print("Enter New Name: ");
         customerToUpdate.setName(sc.next());
         System.out.print("Enter New Phone Number: ");

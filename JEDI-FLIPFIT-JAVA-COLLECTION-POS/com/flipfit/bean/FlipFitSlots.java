@@ -7,6 +7,7 @@ import java.util.Date;
  *@Version : "1.0"
  *@See : "java.util.Date"
  */
+
 public class FlipFitSlots {
     private String slotId;
     private String gymId;

@@ -1,13 +1,12 @@
 package com.flipfit.dao;
 
-import com.flipfit.bean.FlipFitPayment;
-
+import com.flipfit.bean.Payment;
 import java.util.List;
 
 public interface FlipFitPaymentDAO {
-    void addPayment(FlipFitPayment payment);
-    FlipFitPayment getPaymentByTransactionId(String transactionId);
+    void addPayment(Payment payment);
+    Payment getPaymentByTransactionId(String transactionId);
     boolean updatePaymentStatus(String transactionId, String newStatus);
     void deletePayment(String transactionId);
-    List<FlipFitPayment> getAllPayments();
+    List<Payment> getAllPayments();
 }
