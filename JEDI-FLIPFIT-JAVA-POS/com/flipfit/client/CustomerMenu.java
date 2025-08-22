@@ -1,12 +1,14 @@
 package com.flipfit.client;
 
-import java.text.ParseException;
-import java.util.*;
 import com.flipfit.bean.*;
 import com.flipfit.business.CustomerService;
-import com.flipfit.business.UserService;
 import com.flipfit.dao.FlipFitUserDAOImpl;
-import com.flipfit.utils.IdGenerator;
+
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.UUID;
 
 
 /*
@@ -126,7 +128,7 @@ public class CustomerMenu {
             // --- 5. PAYMENT PORTAL ---
             FlipFitPayment payment = new FlipFitPayment();
             payment.setBookingId(newBookingId);
-            payment.setTransactionId(IdGenerator.generateId("Trans"));
+            payment.setTransactionId("T-" + UUID.randomUUID().toString().substring(0, 4).toUpperCase());
             payment.setPaymentStatus("Success");
 
             System.out.println("--- Payment Portal ---");
