@@ -207,6 +207,7 @@ public class FlipFitCustomerDAOImpl implements FlipFitCustomerDAO {
         boolean success = false;
         String fetchSlotIdSQL = "SELECT slotId FROM booking WHERE bookingId = ?";
         String deleteBookingSQL = "DELETE FROM booking WHERE bookingId = ?";
+        String deletePaymentSQL = "DELETE FROM payment WHERE bookingId = ?";  /// experiment
         String updateSlotSQL = "UPDATE slot SET numOfSeatsBooked = numOfSeatsBooked - 1 WHERE slotId = ?";
 
         try {
@@ -222,7 +223,10 @@ public class FlipFitCustomerDAOImpl implements FlipFitCustomerDAO {
                 slotId = rs.getString("slotId");
             }
 
-            // 2. Delete the booking
+            PreparedStatement deletePaymentStmt = connection.prepareStatement(deletePaymentSQL);
+            deletePaymentStmt.setString(1, bookingId);
+            deletePaymentStmt.executeUpdate();
+
             PreparedStatement deleteStmt = connection.prepareStatement(deleteBookingSQL);
             deleteStmt.setString(1, bookingId);
             int rowsAffected = deleteStmt.executeUpdate();
@@ -251,7 +255,7 @@ public class FlipFitCustomerDAOImpl implements FlipFitCustomerDAO {
                 printSQLException(ex);
             }
         }
-        return false;
+        return success;
     }
 
     @Override
