@@ -27,7 +27,7 @@ public class DbConnection {
             try{
                 String URL = "jdbc:mysql://localhost:3306/FLIPFIT_SCHEMA";
                 String USER = "root";
-                String PASSWORD = "juT3$h@nk$m@z3";
+                String PASSWORD = "Sumanth@2001";
                 connection = DriverManager.getConnection(URL, USER, PASSWORD);
             }
             catch(SQLException e) {
